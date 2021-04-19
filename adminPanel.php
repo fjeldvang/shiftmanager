@@ -3,12 +3,12 @@
 <table border="1" cellpadding="5" width="800">
 	<tr>
 		<td valign="top">
-		<form action="registrer.php" method="post">
+		<form action="register.php" method="post">
 			<h3>Registrer skift</h3>
 			<table style="width: 70%">
 				<tr>
 					<td>Navn:</td>
-                    <td><?php include_once 'userIDListbox.php'; listboxForUserID();?></td>
+                    <td><?php include_once 'functions.php'; listboxForUserID();?></td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
@@ -93,7 +93,7 @@
     <h3>Kanseller skift</h3>
     <form action="cancel.php" method="post">
         <p></p>
-        <?php include_once 'shiftIDListbox.php'; listboxForShiftID(); ?>
+        <?php listboxForShiftID(); ?>
         <p><input name="cancel" type="submit" value="Cancel" /></p>
     </form>
 </td>
@@ -109,6 +109,6 @@
 </table><br/>
 
 <form method="post" action="" enctype="multipart/form-data" id="showUserSpecific" name="showUserSpecific" onsubmit="#">
-    Filtrer etter bruker  <?php include_once 'userIDListbox2.php'; listboxForUserID2(); ?> <br/>
+    Filtrer etter bruker  <?php listboxForUserID2(); ?> <br/>
     <input name="find" type="submit" value="Show user shifts" />
 </form>
