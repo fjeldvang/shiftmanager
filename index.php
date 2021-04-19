@@ -106,7 +106,7 @@ td.calendar-day, td.calendar-day-np {
 
 <body>
 
-<h1>Shift calendar</h1>
+<h1>Shiftmanager Marcussen Efte</h1>
 <?php
 /* sjekker om man er admin fra login, inkluderer admin panel om det er tilfellet */
 if($_SESSION["admin"] == "true"){

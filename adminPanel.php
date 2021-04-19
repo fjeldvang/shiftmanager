@@ -86,7 +86,7 @@
         </select></td>
 </tr>
 </table>
-<input name="book" type="submit" value="Add shift" />
+<input name="book" type="submit" value="Opprett skift" />
 </form>
 </td>
 <td valign="top">
@@ -94,7 +94,7 @@
     <form action="cancel.php" method="post">
         <p></p>
         <?php listboxForShiftID(); ?>
-        <p><input name="cancel" type="submit" value="Cancel" /></p>
+        <p><input name="cancel" type="submit" value="Kanseller" /></p>
     </form>
 </td>
 <td valign="top">
@@ -102,7 +102,7 @@
     <form action="delete.php" method="post">
         <p></p>
         <?php listboxForShiftID(); ?>
-        <p><input name="delete" type="submit" value="Delete" /></p>
+        <p><input name="delete" type="submit" value="Slett" /></p>
     </form>
 </td>
 </tr>
@@ -110,5 +110,5 @@
 
 <form method="post" action="" enctype="multipart/form-data" id="showUserSpecific" name="showUserSpecific" onsubmit="#">
     Filtrer etter bruker  <?php listboxForUserID2(); ?> <br/>
-    <input name="find" type="submit" value="Show user shifts" />
+    <input name="find" type="submit" value="Vis skift" />
 </form>
