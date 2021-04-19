@@ -37,7 +37,6 @@ if($_SESSION["admin"] == "true"){
     include 'php/adminPanel.php';
 }
 
-
 /* config inneholder $months, et array av alle månedene. trengs når man bruker draw_calendar() */
 include 'php/config.php';
 
