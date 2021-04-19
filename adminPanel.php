@@ -22,7 +22,7 @@
 <tr>
     <td>&nbsp;</td>
     <td> <select name="start_hour">
-            <option selected="selected">00</option>
+            <option>00</option>
             <option>01</option>
             <option>02</option>
             <option>03</option>
@@ -30,7 +30,7 @@
             <option>05</option>
             <option>06</option>
             <option>07</option>
-            <option>08</option>
+            <option selected="selected">08</option>
             <option>09</option>
             <option>10</option>
             <option>11</option>
@@ -70,14 +70,14 @@
             <option>13</option>
             <option>14</option>
             <option>15</option>
-            <option>16</option>
+            <option selected="selected">16</option>
             <option>17</option>
             <option>18</option>
             <option>19</option>
             <option>20</option>
             <option>21</option>
             <option>22</option>
-            <option selected="selected">23</option>
+            <option>23</option>
         </select>:<select name="end_minute">
             <option selected="selected">00</option>
             <option>15</option>
