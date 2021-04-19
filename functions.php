@@ -69,12 +69,13 @@ function listboxForShiftID()
         $row = mysqli_fetch_array($sqlResult);
         $shiftID = $row["id"];
         $username = $row["username"];
+        $name = $row["name"];
         $start_day = $row["start_day"];
         $start_time = sprintf("%02d:%02d", $row["start_time"]/60/60, ($row["start_time"]%(60*60)/60));
         $convertedDay = date("j-m-y", $start_day);
         // $convertedTime = date("H:i", $start_time);
         
-        print ("<option value='$shiftID'>$convertedDay $start_time | $username </option>");
+        print ("<option value='$shiftID'>$convertedDay $start_time | $name </option>");
     }
     print("</select>");
 }
