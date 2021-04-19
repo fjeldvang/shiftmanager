@@ -115,7 +115,8 @@ if($_SESSION["admin"] == "true"){
 
 /* hovedfunksjon som skriver ut kalenderen basert på valgt brukerID */
 function draw_calendar($month,$year,$userID){
-
+    
+	date_default_timezone_set('Europe/Oslo');
 	include 'config.php';
 
 	/* setter opp tilkoblingen */
