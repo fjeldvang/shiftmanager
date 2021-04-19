@@ -47,7 +47,8 @@ div.day-number {
 	text-align: center;
 }
 td.calendar-day, td.calendar-day-np {
-	width: 120px;
+	width: 180px; /* orig: 120px */
+	height:70px; /* kan fjernes */
 	padding: 5px;
 	border-bottom: 1px solid #999;
 	border-right: 1px solid #999;

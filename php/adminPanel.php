@@ -8,16 +8,16 @@
 			<table style="width: 70%">
 				<tr>
 					<td>Navn:</td>
-                    <td><?php include_once 'functions.php'; listboxForUserID();?></td>
+                    <td><?php listboxForUserID();?></td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
 <tr>
     <td>Skift tid:</td>
     <td>
-        <input id="from" name="start_day" required="" type="text" /></td>
+        <input id="from" name="start_day" required="" type="text"  autocomplete="off" /></td>
     <td>-</td>
-    <td><input id="to" name="end_day" required="" type="text" /></td>
+    <td><input id="to" name="end_day" required="" type="text"  autocomplete="off" /></td>
 </tr>
 <tr>
     <td>&nbsp;</td>
