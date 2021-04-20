@@ -11,7 +11,6 @@ function getUserID($userID, $usn){
     $sqlResult = mysqli_query($conn, $sqlQuery) or die("Funker ikke");
         $row = mysqli_fetch_array($sqlResult);
 		$userID = $row["userID"];
-        print($userID);
 		setAsAdmin($userID);
 }
 
@@ -26,38 +25,13 @@ function setAsAdmin($userID){
 
         if (mysqli_query($conn, $sql)) 
 		{
-            echo "<h3>Registrert som admin.</h3>";
+            echo "<h3>Bruker også registrert som admin.</h3>";
         }
 }
 
 function listboxForUserID()
 {
     print("<select name='listbox' id='listbox'>");
-    include 'config.php';
-    // Create connection
-    $conn = mysqli_connect($servername, $username, $password,  $dbname);
-
-    $sqlQuery = "SELECT * FROM user order by userID;";
-    $sqlResult = mysqli_query($conn, $sqlQuery) or die("Ikke mulig å hente data fra databasen");
-    $numRows = mysqli_num_rows($sqlResult);
-    print ("<option value='' disabled selected> Velg bruker </option>");
-    for ($r = 1;$r <= $numRows;$r++)
-    {
-        $row = mysqli_fetch_array($sqlResult);
-        $userID = $row["userID"];
-        $name= $row["name"];
-        $username = $row["username"];
-
-		// skip admin bruker
-		if($userID==1) continue;
-        print ("<option value='$userID'>$name | $username </option>");
-    }
-    print("</select>");
-}
-
-function listboxForUserID2()
-{
-    print("<select name='listbox2' id='listbox2' onchange='this.createCookie()'>");
     include 'config.php';
     // Create connection
     $conn = mysqli_connect($servername, $username, $password,  $dbname);
@@ -87,7 +61,7 @@ function listboxForShiftID()
     // Create connection
     $conn = mysqli_connect($servername, $username, $password,  $dbname);
 
-    $sqlQuery = "SELECT * FROM shifts JOIN user ON shifts.userID=user.userID;";
+    $sqlQuery = "SELECT * FROM shifts JOIN user ON shifts.userID=user.userID ORDER BY start_day ASC;";
     $sqlResult = mysqli_query($conn, $sqlQuery) or die("Ikke mulig å hente data fra databasen");
     $numRows = mysqli_num_rows($sqlResult);
     print ("<option value='' disabled selected> Velg skift </option>");

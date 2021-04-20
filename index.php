@@ -46,13 +46,13 @@ include 'php/config.php';
 if($_SESSION["admin"] == "true")
 {
 	/* venter her med å gå videre til listbox2 er set, henter verdi og tegner kalender */
-    if(isset($_POST["listbox2"]))
+    if(isset($_POST["listbox"]))
 	{
-        $userID=$_POST["listbox2"];
+        $userID=$_POST["listbox"];
 		prepareToDrawCalendar($months, $userID);
     } 
 	/* viser egen timeplan til å begynne med */
-	elseif(!isset($_POST["listbox2"]))
+	elseif(!isset($_POST["listbox"]))
 	{	
 		$userID=$_SESSION["userID"];
 		prepareToDrawCalendar($months, $userID);

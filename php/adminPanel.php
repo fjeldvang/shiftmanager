@@ -127,10 +127,19 @@
 </form>
 
 </td>
+<td valign="top">
+<h3>Slett bruker</h3>
+
+<form method="post" action="php/delUser.php" enctype="multipart/form-data" id="delUser" name="delUser" onsubmit="#">
+    <?php listboxForUserID(); ?>
+    <p><input name="delUser" type="submit" value="Slett bruker" /></p>
+</form>
+
+</td>
 </tr>
 </table><br/>
 
 <form method="post" action="" enctype="multipart/form-data" id="showUserSpecific" name="showUserSpecific" onsubmit="#">
-    Filtrer etter bruker  <?php listboxForUserID2(); ?> <br/>
+    Filtrer etter bruker  <?php listboxForUserID(); ?> <br/>
     <input name="find" type="submit" value="Vis skift" />
 </form>
