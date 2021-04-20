@@ -2,13 +2,38 @@
 
 // https://www.linkedin.com/pulse/why-should-you-switch-pdo-from-mysql-mysqli-diwaker-mishra/
 
+function getUserID($userID, $usn){
+    include 'config.php';
+    // Create connection
+    $conn = mysqli_connect($servername, $username, $password,  $dbname);
+
+	$sqlQuery = "SELECT * FROM user WHERE username LIKE '$usn'";
+    $sqlResult = mysqli_query($conn, $sqlQuery) or die("Funker ikke");
+        $row = mysqli_fetch_array($sqlResult);
+		$userID = $row["userID"];
+        print($userID);
+		setAsAdmin($userID);
+}
+
+function setAsAdmin($userID){
+	
+	include 'config.php';
+    // Create connection
+    $conn = mysqli_connect($servername, $username, $password,  $dbname);
+
+	$sql = "INSERT INTO isadmin(userID)
+			VALUES ($userID)";
+
+        if (mysqli_query($conn, $sql)) 
+		{
+            echo "<h3>Registrert som admin.</h3>";
+        }
+}
+
 function listboxForUserID()
 {
     print("<select name='listbox' id='listbox'>");
-    $servername = "localhost";
-    $username ="225299";
-    $password = "992522";
-    $dbname = "225299";
+    include 'config.php';
     // Create connection
     $conn = mysqli_connect($servername, $username, $password,  $dbname);
 
@@ -22,6 +47,9 @@ function listboxForUserID()
         $userID = $row["userID"];
         $name= $row["name"];
         $username = $row["username"];
+
+		// skip admin bruker
+		if($userID==1) continue;
         print ("<option value='$userID'>$name | $username </option>");
     }
     print("</select>");
@@ -30,10 +58,7 @@ function listboxForUserID()
 function listboxForUserID2()
 {
     print("<select name='listbox2' id='listbox2' onchange='this.createCookie()'>");
-    $servername = "localhost";
-    $username ="225299";
-    $password = "992522";
-    $dbname = "225299";
+    include 'config.php';
     // Create connection
     $conn = mysqli_connect($servername, $username, $password,  $dbname);
 
@@ -47,6 +72,9 @@ function listboxForUserID2()
         $userID = $row["userID"];
         $name= $row["name"];
         $username = $row["username"];
+
+		// skip admin bruker
+		if($userID==1) continue;
         print ("<option value='$userID'>$name | $username </option>");
     }
     print("</select>");
@@ -55,10 +83,7 @@ function listboxForUserID2()
 function listboxForShiftID()
 {
     print("<select name='listboxShift' id='listboxShift'>");
-    $servername = "localhost";
-    $username ="225299";
-    $password = "992522";
-    $dbname = "225299";
+    include 'config.php';
     // Create connection
     $conn = mysqli_connect($servername, $username, $password,  $dbname);
 
@@ -103,10 +128,7 @@ function draw_calendar($month,$year,$userID){
 	include 'config.php';
 
 	/* setter opp tilkoblingen */
-	$servername = "localhost";
-	$username ="225299";
-	$password = "992522";
-	$dbname = "225299";
+	include 'config.php';
 	$conn = mysqli_connect($servername, $username, $password, $dbname);
 
 	/* validerer tilkobling */

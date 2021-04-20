@@ -1,5 +1,7 @@
 <?php
 
+/* Inneholder hovedsiden og alle brukerfunksjoner */ 
+
 session_start();
 @$loginUser = $_SESSION["username"];
 if (!$loginUser)

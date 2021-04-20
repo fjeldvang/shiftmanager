@@ -87,6 +87,7 @@
         </select></td>
 </tr>
 </table>
+<br><br>
 <input name="book" type="submit" value="Opprett skift" />
 </form>
 </td>

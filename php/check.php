@@ -2,6 +2,9 @@
 
 // Inneholder en funksjon for å sjekke om brukernavn og passord er korrekt
 
+error_reporting(0);
+ini_set('display_errors', 0);
+
 function checkUserPass($username, $password){
     $servername = "localhost";
     $us ="225299";
@@ -31,6 +34,7 @@ function checkUserPass($username, $password){
             $legalUser = false;
         }
     }
+    end:
     return $legalUser;
 }
 

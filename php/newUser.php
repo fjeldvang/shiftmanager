@@ -12,43 +12,8 @@ session_start();
 <body>
 
 <?php
-
-function getUserID($userID, $usn){
-    $servername = "localhost";
-    $username ="225299";
-    $password = "992522";
-    $dbname = "225299";
-    // Create connection
-    $conn = mysqli_connect($servername, $username, $password,  $dbname);
-
-	$sqlQuery = "SELECT * FROM user WHERE username LIKE '$usn'";
-    $sqlResult = mysqli_query($conn, $sqlQuery) or die("Funker ikke");
-        $row = mysqli_fetch_array($sqlResult);
-		$userID = $row["userID"];
-        print($userID);
-		setAsAdmin($userID);
-}
-
-function setAsAdmin($userID){
-	
-	$servername = "localhost";
-    $username ="225299";
-    $password = "992522";
-    $dbname = "225299";
-    // Create connection
-    $conn = mysqli_connect($servername, $username, $password,  $dbname);
-
-	$sql = "INSERT INTO isadmin(userID)
-			VALUES ($userID)";
-
-        if (mysqli_query($conn, $sql)) 
-		{
-            echo "<h3>Registrert som admin.</h3>";
-        }
-}
-
 		include 'config.php';
-
+        include 'functions.php';
 		// Create connection
 		$conn = mysqli_connect($servername, $username, $password, $dbname);
 
@@ -62,21 +27,37 @@ function setAsAdmin($userID){
             $usn = $_POST["username"];
             $pw = $_POST["password"];
             $phone = $_POST["phone"];
-            $sql = "INSERT INTO user(username, name, phone, password) VALUES('$usn', '$name', '$phone', '$pw')";
 
-            if (mysqli_query($conn, $sql)) 
+            $sql = "SELECT * FROM user WHERE name ='$name' OR username ='$usn'";
+            $result = mysqli_query($conn, $sql);
+            if (mysqli_num_rows($result) > 0) {
+                echo "Bruker med navn $name eller brukernavn $usn er allerede registrert fra før";
+                goto end;
+            }
+            else
             {
-                echo "<h3>Bruker laget</h3>";
+                $sql = "INSERT INTO user(username, name, phone, password) VALUES('$usn', '$name', '$phone', '$pw')";
 
-                    if(isset($_POST["admin"])){
-                        getUserID($userID, $usn);
-                    }
-            } 
-            else 
-            {
-                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                if (mysqli_query($conn, $sql)) 
+                {
+                    echo "<h3>Bruker laget</h3>";
+
+                        if(isset($_POST["admin"]) && $_SESSION["userID"]==1){
+                            getUserID($userID, $usn);    
+                        }
+                        elseif(isset($_POST["admin"]) && $_SESSION["userID"]!=1){
+                            echo "Du må være logget inn som rotbrukeren for å kunne legge til admin brukere<br><br>";
+                            echo "(for DB admin) <br> Lag administrator konto via phpmyadmin med userID 1";
+                            goto end;  
+                        }
+                } 
+                else 
+                {
+                    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                }
             }
         }
+        end:
 		mysqli_close($conn);
 ?>
 
