@@ -37,7 +37,7 @@ session_start();
 		mysqli_close($conn);
 ?>
 
-<a href="index.php"><p>Tilbake til kalenderen</p></a>
+<a href="../index.php"><p>Tilbake til kalenderen</p></a>
 
 </body>
 

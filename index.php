@@ -48,7 +48,13 @@ if($_SESSION["admin"] == "true")
 	{
         $userID=$_POST["listbox2"];
 		prepareToDrawCalendar($months, $userID);
-    }
+    } 
+	/* viser egen timeplan til å begynne med */
+	elseif(!isset($_POST["listbox2"]))
+	{	
+		$userID=$_SESSION["userID"];
+		prepareToDrawCalendar($months, $userID);
+	}
 }
 else
 {
