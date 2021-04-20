@@ -3,8 +3,8 @@
 // https://www.linkedin.com/pulse/why-should-you-switch-pdo-from-mysql-mysqli-diwaker-mishra/
 
 function getUserID($userID, $usn){
+	/* Henter userID fra database med valgt brukernavn og setter som admin */
     include 'config.php';
-    // Create connection
     $conn = mysqli_connect($servername, $username, $password,  $dbname);
 
 	$sqlQuery = "SELECT * FROM user WHERE username LIKE '$usn'";
@@ -15,9 +15,8 @@ function getUserID($userID, $usn){
 }
 
 function setAsAdmin($userID){
-	
+	/* Setter som admin */
 	include 'config.php';
-    // Create connection
     $conn = mysqli_connect($servername, $username, $password,  $dbname);
 
 	$sql = "INSERT INTO isadmin(userID)
@@ -31,15 +30,17 @@ function setAsAdmin($userID){
 
 function listboxForUserID()
 {
+	/* Listeboks for brukere */
     print("<select name='listbox' id='listbox'>");
     include 'config.php';
-    // Create connection
     $conn = mysqli_connect($servername, $username, $password,  $dbname);
 
     $sqlQuery = "SELECT * FROM user order by userID;";
     $sqlResult = mysqli_query($conn, $sqlQuery) or die("Ikke mulig å hente data fra databasen");
     $numRows = mysqli_num_rows($sqlResult);
+
     print ("<option value='' disabled selected> Velg bruker </option>");
+
     for ($r = 1;$r <= $numRows;$r++)
     {
         $row = mysqli_fetch_array($sqlResult);
@@ -56,15 +57,21 @@ function listboxForUserID()
 
 function listboxForShiftID()
 {
+	/* Listeboks for skift */
     print("<select name='listboxShift' id='listboxShift'>");
     include 'config.php';
-    // Create connection
     $conn = mysqli_connect($servername, $username, $password,  $dbname);
 
     $sqlQuery = "SELECT * FROM shifts JOIN user ON shifts.userID=user.userID ORDER BY start_day ASC;";
     $sqlResult = mysqli_query($conn, $sqlQuery) or die("Ikke mulig å hente data fra databasen");
     $numRows = mysqli_num_rows($sqlResult);
+
     print ("<option value='' disabled selected> Velg skift </option>");
+	
+	// henter datetime for i dag
+	$d = new DateTime(date("Y-m-d"));
+	$currentDay = $d->getTimestamp();
+
     for ($r = 1;$r <= $numRows;$r++)
     {
         $row = mysqli_fetch_array($sqlResult);
@@ -74,13 +81,16 @@ function listboxForShiftID()
         $start_day = $row["start_day"];
         $start_time = sprintf("%02d:%02d", $row["start_time"]/60/60, ($row["start_time"]%(60*60)/60));
         $convertedDay = date("j-m-y", $start_day);
-        // $convertedTime = date("H:i", $start_time);
-        
+
+		/* printer option om skiftet ikke er samme dag eller tidligere */
+        if($start_day>$currentDay){
         print ("<option value='$shiftID'>$convertedDay $start_time | $name </option>");
+		}
     }
     print("</select>");
 }
 
+// forbereder tegning av kalender med array av måneder for en spesifikk brukerID
 function prepareToDrawCalendar($months, $userID)
 {
 $d = new DateTime(date("Y-m-d"));
@@ -96,6 +106,7 @@ echo '<h3>' . $months[$d->format('n')-1] . ' ' . $d->format('Y') . '</h3>';
 echo draw_calendar($d->format('m'),$d->format('Y'), $userID);
 }
 
+// tegner kalenderen
 function draw_calendar($month,$year,$userID){
     
 	date_default_timezone_set('Europe/Oslo');
@@ -135,7 +146,10 @@ function draw_calendar($month,$year,$userID){
 			/* add in the day number */
 			$calendar.= '<div class="day-number">'.$list_day.'</div>';
 
+			// setter inn paragraf tag for spacing
 			$calendar.= str_repeat('<p> </p>',2);
+
+			// lager denne epoken for å identifisere tidsrom
 			$current_epoch = mktime(0,0,0,$month,$list_day,$year);
 
             /* lager sql spørring for å hente data med informasjon fra config.php */
@@ -162,10 +176,11 @@ function draw_calendar($month,$year,$userID){
 	    			}
 					if($row["canceled"] == 1) $calendar .= "</s></font>";
     			}
-			} else {
+			} 
+			else {
     			$calendar .= "Ingen skift";
 			}
-			
+		// kalender logikk og table struktur
 		$calendar.= '</td>';
 		if($running_day == 6):
 			$calendar.= '</tr>';

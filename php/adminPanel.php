@@ -1,4 +1,12 @@
-<?php?>
+<?php
+/* Inneholder admin panelet med php CRUD funksjonalitet */
+
+// sjekker om session admin er true i tilfelle noen åpner direkte url til adminpanel
+if($_SESSION["admin"] != "true"){
+    echo 'Du har ikke tilgang til admin panelet';
+} 
+else{
+?>
 
 <table border="1" cellpadding="5" width="800">
 	<tr>
@@ -143,3 +151,6 @@
     Filtrer etter bruker  <?php listboxForUserID(); ?> <br/>
     <input name="find" type="submit" value="Vis skift" />
 </form>
+<?php 
+} 
+?>

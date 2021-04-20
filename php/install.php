@@ -1,14 +1,17 @@
 <?php
+
+	/* Kjør denne filen på en server for å opprette database tabeller.
+	Endre på config.php først med riktig db informasjon. */
+
 	include 'config.php';
 	
-	// Create connection
+	// lager og sjekker tilkoblingen
 	$conn = mysqli_connect($servername, $username, $password, $dbname);
-	// Check connection
 	if (!$conn) {
 		die("Connection failed: " . mysqli_connect_error());
 	}
+	// lager "user" tabellen
 	$tablename = "user";
-	// sql to create table
 	$sql = "CREATE TABLE $tablename (
 		userID INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 		name VARCHAR(50) NOT NULL,
@@ -23,8 +26,8 @@
 		echo "Error creating table: " . mysqli_error($conn);
 	}
 
+	// lager "shifts" tabellen
 	$tablename = "shifts";
-
 	$sql = "CREATE TABLE $tablename (
 	id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	start_day INT(11),
@@ -42,8 +45,8 @@
 		echo "Error creating table: " . mysqli_error($conn);
 	}
 
+	// lager isadmin tabellen
 	$tablename = "isadmin";
-
 	$sql = "CREATE TABLE $tablename(
 	userID int(11) UNSIGNED NOT NULL,
 	FOREIGN KEY (userID) REFERENCES user(userID)
