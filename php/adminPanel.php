@@ -1,28 +1,37 @@
-<?php?>
+<?php
+/* Inneholder admin panelet med php CRUD funksjonalitet */
+
+// sjekker om session admin er true i tilfelle noen åpner direkte url til adminpanel
+if($_SESSION["admin"] != "true"){
+    echo 'Du har ikke tilgang til admin panelet';
+} 
+else{
+?>
 
 <table border="1" cellpadding="5" width="800">
 	<tr>
 		<td valign="top">
-		<form action="registrer.php" method="post">
+        
+		<form action="php/register.php" method="post" class="regForm">
 			<h3>Registrer skift</h3>
 			<table style="width: 70%">
 				<tr>
 					<td>Navn:</td>
-                    <td><?php include_once 'userIDListbox.php'; listboxForUserID();?></td>
+                    <td><?php listboxForUserID();?></td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
 <tr>
     <td>Skift tid:</td>
     <td>
-        <input id="from" name="start_day" required="" type="text" /></td>
+        <input id="from" name="start_day" required="" type="text"  autocomplete="off" /></td>
     <td>-</td>
-    <td><input id="to" name="end_day" required="" type="text" /></td>
+    <td><input id="to" name="end_day" required="" type="text"  autocomplete="off" /></td>
 </tr>
 <tr>
     <td>&nbsp;</td>
     <td> <select name="start_hour">
-            <option selected="selected">00</option>
+            <option>00</option>
             <option>01</option>
             <option>02</option>
             <option>03</option>
@@ -30,7 +39,7 @@
             <option>05</option>
             <option>06</option>
             <option>07</option>
-            <option>08</option>
+            <option selected="selected">08</option>
             <option>09</option>
             <option>10</option>
             <option>11</option>
@@ -70,14 +79,14 @@
             <option>13</option>
             <option>14</option>
             <option>15</option>
-            <option>16</option>
+            <option selected="selected">16</option>
             <option>17</option>
             <option>18</option>
             <option>19</option>
             <option>20</option>
             <option>21</option>
             <option>22</option>
-            <option selected="selected">23</option>
+            <option>23</option>
         </select>:<select name="end_minute">
             <option selected="selected">00</option>
             <option>15</option>
@@ -86,29 +95,62 @@
         </select></td>
 </tr>
 </table>
-<input name="book" type="submit" value="Add shift" />
+<br><br>
+<input name="book" type="submit" value="Opprett skift" />
 </form>
 </td>
+
 <td valign="top">
     <h3>Kanseller skift</h3>
-    <form action="cancel.php" method="post">
+
+    <form action="php/cancel.php" method="post" class="cancelForm">
         <p></p>
-        <?php include_once 'shiftIDListbox.php'; listboxForShiftID(); ?>
-        <p><input name="cancel" type="submit" value="Cancel" /></p>
+        <?php listboxForShiftID(); ?>
+        <p><input name="cancel" type="submit" value="Kanseller" /></p>
     </form>
+
 </td>
 <td valign="top">
     <h3>Slett skift</h3>
-    <form action="delete.php" method="post">
+
+    <form action="php/delete.php" method="post" class="deleteForm">
         <p></p>
         <?php listboxForShiftID(); ?>
-        <p><input name="delete" type="submit" value="Delete" /></p>
+        <p><input name="delete" type="submit" value="Slett" /></p>
     </form>
+
+</td>
+<td valign="top">
+<h3>Lag ny bruker</h3>
+
+<form method="post" action="php/newUser.php" enctype="multipart/form-data" id="createUser" name="createUser" class ="createUser" onsubmit="#">
+    Fornavn/Etternavn<input type="text" id="fname" name="fname"><br>
+    Brukernavn<input type="text" id="username" name="username"><br>
+    Passord<input type="password" id="password" name="password"><br>
+    Telefonnr<input type="text" id="phone" name="phone"><br>
+
+    <input type="checkbox" id="admin" name="admin" value="admin">
+    <label for="admin"> Sett som admin? </label>
+    <p><input name="find" type="submit" value="Lag ny bruker" /></p>
+</form>
+
+</td>
+<td valign="top">
+<h3>Slett bruker</h3>
+
+<form method="post" action="php/delUser.php" enctype="multipart/form-data" id="delUser" name="delUser" class ="delUser" onsubmit="#">
+    <?php listboxForUserID(); ?>
+    <p><input name="delUser" type="submit" value="Slett bruker" /></p>
+</form>
+
 </td>
 </tr>
 </table><br/>
 
-<form method="post" action="" enctype="multipart/form-data" id="showUserSpecific" name="showUserSpecific" onsubmit="#">
-    Filtrer etter bruker  <?php include_once 'userIDListbox2.php'; listboxForUserID2(); ?> <br/>
-    <input name="find" type="submit" value="Show user shifts" />
+<form method="post" action="" enctype="multipart/form-data" id="showUserSpecific" name="showUserSpecific" class="showUserSpecific" onsubmit="#">
+    Filtrer etter bruker  <?php listboxForUserID(); ?> <br/>
+    <p><input name="find" type="submit" value="Vis skift" /></p>
 </form>
+<?php 
+} 
+?>

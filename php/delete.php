@@ -14,14 +14,13 @@ session_start();
 <?php
 		include 'config.php';
 
-		// Create connection
+		// Lager tilkobling og sjekker
 		$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-		// Check connection
 		if (!$conn) {
 			die("Connection failed: " . mysqli_connect_error());
 		}
-
+		
+		// sjekker at ikke listeboks er null
 		$id = intval(htmlspecialchars($_POST["listboxShift"]));
 		if($id == null){
 		    print("<h3>Velg skift fra listeboksen</h3>");
@@ -37,7 +36,7 @@ session_start();
 		mysqli_close($conn);
 ?>
 
-<a href="index.php"><p>Tilbake til kalenderen</p></a>
+<a href="../index.php"><p>Tilbake til kalenderen</p></a>
 
 </body>
 

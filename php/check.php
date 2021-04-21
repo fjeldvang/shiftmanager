@@ -2,12 +2,17 @@
 
 // Inneholder en funksjon for å sjekke om brukernavn og passord er korrekt
 
+
+// trenger disse da det kommer ganske forstyrrende warning om man er uheldig og skriver feil brukernavn/passord
+error_reporting(0);
+ini_set('display_errors', 0);
+
 function checkUserPass($username, $password){
     $servername = "localhost";
     $us ="225299";
     $pw = "992522";
     $dbname = "225299";
-    // Create connection
+    // koble til db
     $conn = mysqli_connect($servername, $us, $pw, $dbname);
 
     $legalUser = true;
@@ -34,12 +39,15 @@ function checkUserPass($username, $password){
     return $legalUser;
 }
 
+// enkel setter for session UID
 function setUserID($userID){
     $_SESSION["userID"] = $userID;
 }
 
+/* Sjekker om spesifikk brukerID er admin eller ikke av å lete i isadmin tabellen i db 
+    Setter deretter session admin variabel til enten true eller false.
+    Gjøres litt tungvindt da bool og session variabler i PHP går dårlig sammen */
 function checkIfAdmin($userID, $conn){
-
     $sqlQuery = "SELECT * FROM isadmin WHERE userID='$userID';";
     $sqlResult = mysqli_query($conn, $sqlQuery);
     if($row = mysqli_fetch_array($sqlResult)){
