@@ -12,7 +12,7 @@ else{
 	<tr>
 		<td valign="top">
         
-		<form action="php/register.php" method="post">
+		<form action="php/register.php" method="post" class="regForm">
 			<h3>Registrer skift</h3>
 			<table style="width: 70%">
 				<tr>
@@ -103,7 +103,7 @@ else{
 <td valign="top">
     <h3>Kanseller skift</h3>
 
-    <form action="php/cancel.php" method="post">
+    <form action="php/cancel.php" method="post" class="cancelForm">
         <p></p>
         <?php listboxForShiftID(); ?>
         <p><input name="cancel" type="submit" value="Kanseller" /></p>
@@ -113,7 +113,7 @@ else{
 <td valign="top">
     <h3>Slett skift</h3>
 
-    <form action="php/delete.php" method="post">
+    <form action="php/delete.php" method="post" class="deleteForm">
         <p></p>
         <?php listboxForShiftID(); ?>
         <p><input name="delete" type="submit" value="Slett" /></p>
@@ -123,22 +123,22 @@ else{
 <td valign="top">
 <h3>Lag ny bruker</h3>
 
-<form method="post" action="php/newUser.php" enctype="multipart/form-data" id="createUser" name="createUser" onsubmit="#">
+<form method="post" action="php/newUser.php" enctype="multipart/form-data" id="createUser" name="createUser" class ="createUser" onsubmit="#">
     Fornavn/Etternavn<input type="text" id="fname" name="fname"><br>
     Brukernavn<input type="text" id="username" name="username"><br>
     Passord<input type="password" id="password" name="password"><br>
     Telefonnr<input type="text" id="phone" name="phone"><br>
 
     <input type="checkbox" id="admin" name="admin" value="admin">
-    <label for="admin"> Sett som admin? </label><br><br>
-    <input name="find" type="submit" value="Lag ny bruker" />
+    <label for="admin"> Sett som admin? </label>
+    <p><input name="find" type="submit" value="Lag ny bruker" /></p>
 </form>
 
 </td>
 <td valign="top">
 <h3>Slett bruker</h3>
 
-<form method="post" action="php/delUser.php" enctype="multipart/form-data" id="delUser" name="delUser" onsubmit="#">
+<form method="post" action="php/delUser.php" enctype="multipart/form-data" id="delUser" name="delUser" class ="delUser" onsubmit="#">
     <?php listboxForUserID(); ?>
     <p><input name="delUser" type="submit" value="Slett bruker" /></p>
 </form>
@@ -147,9 +147,9 @@ else{
 </tr>
 </table><br/>
 
-<form method="post" action="" enctype="multipart/form-data" id="showUserSpecific" name="showUserSpecific" onsubmit="#">
+<form method="post" action="" enctype="multipart/form-data" id="showUserSpecific" name="showUserSpecific" class="showUserSpecific" onsubmit="#">
     Filtrer etter bruker  <?php listboxForUserID(); ?> <br/>
-    <input name="find" type="submit" value="Vis skift" />
+    <p><input name="find" type="submit" value="Vis skift" /></p>
 </form>
 <?php 
 } 

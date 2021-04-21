@@ -22,7 +22,15 @@
 	
 	if (mysqli_query($conn, $sql)) {
 		echo "Table " . $tablename . " created successfully";
-	} else {
+		$sql = "INSERT INTO $tablename (userID, name, username, password, phone) VALUES(1, 'Administrator', '$admusername', '$admpassword', null)";
+		if(mysqli_query($conn, $sql)){
+			echo "Administrator user added to " . $tablename . " with the userID 1, username $admusername and password $admpassword";
+		}
+		else {
+			echo "Error: " . mysqli_error($conn);
+		}
+	} 
+	else {
 		echo "Error creating table: " . mysqli_error($conn);
 	}
 
@@ -41,7 +49,8 @@
 
 	if (mysqli_query($conn, $sql)) {
 		echo "Table " . $tablename . " created successfully";
-	} else {
+	} 
+	else {
 		echo "Error creating table: " . mysqli_error($conn);
 	}
 
@@ -54,7 +63,18 @@
 
 	if (mysqli_query($conn, $sql)) {
 	echo "Table " . $tablename . " created successfully";
-	} else {
+	$sql = "INSERT INTO isadmin(userID) VALUES(1)";
+		if (mysqli_query($conn, $sql)) 
+		{
+			echo "Admin user $admusername " . " successfully given privileges";
+			} 
+
+			else 
+			{
+				echo "Error creating table: " . mysqli_error($conn);
+			}
+	} 
+	else {
 	echo "Error creating table: " . mysqli_error($conn);
 	}
 	
