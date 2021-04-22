@@ -27,6 +27,7 @@ session_start();
             $usn = $_POST["username"];
             $pw = $_POST["password"];
             $phone = $_POST["phone"];
+            $location = $_POST["listboxLocation"];
 
             $sql = "SELECT * FROM user WHERE name ='$name' OR username ='$usn'";
             $result = mysqli_query($conn, $sql);
@@ -36,7 +37,7 @@ session_start();
             }
             else
             {
-                $sql = "INSERT INTO user(username, name, phone, password) VALUES('$usn', '$name', '$phone', '$pw')";
+                $sql = "INSERT INTO user(username, name, phone, password, location) VALUES('$usn', '$name', '$phone', '$pw', '$location')";
 
                 if (mysqli_query($conn, $sql)) 
                 {

@@ -128,7 +128,7 @@ else{
     Brukernavn<input type="text" id="username" name="username"><br>
     Passord<input type="password" id="password" name="password"><br>
     Telefonnr<input type="text" id="phone" name="phone"><br>
-
+    Lokasjon<br><?php listboxForLocation() ?><br><br>
     <input type="checkbox" id="admin" name="admin" value="admin">
     <label for="admin"> Sett som admin? </label>
     <p><input name="find" type="submit" value="Lag ny bruker" /></p>
@@ -147,9 +147,9 @@ else{
 </tr>
 </table><br/>
 
-<form method="post" action="" enctype="multipart/form-data" id="showUserSpecific" name="showUserSpecific" class="showUserSpecific" onsubmit="#">
-    Filtrer etter bruker  <?php listboxForUserID(); ?> <br/>
-    <p><input name="find" type="submit" value="Vis skift" /></p>
+<form method="post" action="" enctype="multipart/form-data" id="showLocation" name="showLocation" class="showLocation" onsubmit="#">
+    Filtrer etter lokasjon  <?php listboxForLocation(); ?> <br/>
+    <p><input name="find" type="submit" value="Velg lokasjon" /></p>
 </form>
 <?php 
 } 

@@ -36,6 +36,7 @@ include_once 'php/functions.php';
 
 /* sjekker om man er admin fra login, inkluderer admin panel om det er tilfellet */
 if($_SESSION["admin"] == "true"){
+    //flytte denne ned?
     include 'php/adminPanel.php';
 }
 
@@ -45,6 +46,16 @@ include 'php/config.php';
 /* sjekker om innlogget bruker er admin, henter deretter bruker fra listeboks for å velge view */
 if($_SESSION["admin"] == "true")
 {
+    if(isset($_POST["listboxLocation"])){
+
+    print("<form method='post' action='' enctype='multipart/form-data' id='listboxForUserIDByLocation' name='listboxForUserIDByLocation' class ='listboxForUserIDByLocation' onsubmit=''>");
+    listboxForUserIDByLocation();
+    print("<p><input name='listboxForUserIDByLocation' type='submit' value='Velg lokasjon' /></p>");
+    print("</form>");
+    }
+
+    /* !!!if isset location listeboks print user listbox med sql where location like location!!! */
+
 	/* venter her med å gå videre til listbox2 er set, henter verdi og tegner kalender */
     if(isset($_POST["listbox"]))
 	{

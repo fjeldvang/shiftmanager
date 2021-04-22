@@ -2,7 +2,7 @@
 
 // https://www.linkedin.com/pulse/why-should-you-switch-pdo-from-mysql-mysqli-diwaker-mishra/
 
-function getUserID($userID, $usn){
+function getUserID($usn){
 	/* Henter userID fra database med valgt brukernavn og setter som admin */
     include 'config.php';
     $conn = mysqli_connect($servername, $username, $password,  $dbname);
@@ -12,6 +12,19 @@ function getUserID($userID, $usn){
         $row = mysqli_fetch_array($sqlResult);
 		$userID = $row["userID"];
 		setAsAdmin($userID);
+		return $userID;
+}
+
+function getLocation($userID){
+    /* Henter lokasjon fra database med userID */
+    include 'config.php';
+    $conn = mysqli_connect($servername, $username, $password,  $dbname);
+
+    $sqlQuery = "SELECT * FROM user WHERE userID LIKE '$userID'";
+    $sqlResult = mysqli_query($conn, $sqlQuery) or die("Funker ikke");
+    $row = mysqli_fetch_array($sqlResult);
+    $location = $row["location"];
+    return $location;
 }
 
 function setAsAdmin($userID){
@@ -30,7 +43,7 @@ function setAsAdmin($userID){
 
 function listboxForUserID()
 {
-	/* Listeboks for brukere */
+    /* Listeboks for brukere */
     print("<select name='listbox' id='listbox'>");
     include 'config.php';
     $conn = mysqli_connect($servername, $username, $password,  $dbname);
@@ -48,9 +61,59 @@ function listboxForUserID()
         $name= $row["name"];
         $username = $row["username"];
 
-		// skip admin bruker
-		if($userID==1) continue;
+        // skip admin bruker
+        if($userID==1) continue;
         print ("<option value='$userID'>$name | $username </option>");
+    }
+    print("</select>");
+}
+
+function listboxForUserIDByLocation()
+{
+    /* Listeboks for brukere */
+    $location = $_POST["listboxLocation"];
+    print("<select name='listbox' id='listbox'>");
+    include 'config.php';
+    $conn = mysqli_connect($servername, $username, $password,  $dbname);
+
+    $sqlQuery = "SELECT * FROM user where location LIKE '$location' order by userID;";
+    $sqlResult = mysqli_query($conn, $sqlQuery) or die("Ikke mulig å hente data fra databasen");
+    $numRows = mysqli_num_rows($sqlResult);
+
+    print ("<option value='' disabled selected> Velg bruker </option>");
+
+    for ($r = 1;$r <= $numRows;$r++)
+    {
+        $row = mysqli_fetch_array($sqlResult);
+        $userID = $row["userID"];
+        $name= $row["name"];
+        $username = $row["username"];
+
+        // skip admin bruker
+        if($userID==1) continue;
+        print ("<option value='$userID'>$name | $username </option>");
+    }
+    print("</select>");
+}
+
+function listboxForLocation()
+{
+    /* Listeboks for brukere */
+    print("<select name='listboxLocation' id='listboxLocation'>");
+    include 'config.php';
+    $conn = mysqli_connect($servername, $username, $password,  $dbname);
+
+    $sqlQuery = "SELECT * FROM location order by location;";
+    $sqlResult = mysqli_query($conn, $sqlQuery) or die("Ikke mulig å hente data fra databasen");
+    $numRows = mysqli_num_rows($sqlResult);
+
+    print ("<option value='' disabled selected> Velg lokasjon</option>");
+
+    for ($r = 1;$r <= $numRows;$r++)
+    {
+        $row = mysqli_fetch_array($sqlResult);
+        $location = $row["location"];
+        print ("<option value='$location'>$location </option>");
     }
     print("</select>");
 }
@@ -76,14 +139,14 @@ function listboxForShiftID()
     {
         $row = mysqli_fetch_array($sqlResult);
         $shiftID = $row["id"];
-        $username = $row["username"];
         $name = $row["name"];
         $start_day = $row["start_day"];
+        $end_day = $row["end_day"];
         $start_time = sprintf("%02d:%02d", $row["start_time"]/60/60, ($row["start_time"]%(60*60)/60));
         $convertedDay = date("j-m-y", $start_day);
 
 		/* printer option om skiftet ikke er samme dag eller tidligere */
-        if($start_day>$currentDay){
+        if($end_day > $currentDay){
         print ("<option value='$shiftID'>$convertedDay $start_time | $name </option>");
 		}
     }
@@ -152,6 +215,10 @@ function draw_calendar($month,$year,$userID){
 			// lager denne epoken for å identifisere tidsrom
 			$current_epoch = mktime(0,0,0,$month,$list_day,$year);
 
+            // henter datetime for i dag
+            $d = new DateTime(date("Y-m-d"));
+            $currentDay = $d->getTimestamp();
+
             /* lager sql spørring for å hente data med informasjon fra config.php */
             $sql ="SELECT * FROM $tablename JOIN user ON $tablename.userID=user.userID WHERE $tablename.userID = $userID AND $current_epoch BETWEEN start_day AND end_day";
 
@@ -160,8 +227,9 @@ function draw_calendar($month,$year,$userID){
     		if (mysqli_num_rows($result) > 0) {
     			/* setter ut data av hver eneste rad */
     			while($row = mysqli_fetch_assoc($result)) {
+    			    if($currentDay > $row["end_day"]) $calendar .= "<font color=\"grey\"><s>";
 					if($row["canceled"] == 1) $calendar .= "<font color=\"grey\"><s>";
-    				$calendar .= /*"ID: " . $row["id"] . "<br>" .*/ $row["name"] . "<br>" . $row["phone"] . "<br>";
+    				$calendar .= "Lokasjon: " . $row["location"] . "<br>" . $row["name"] . "<br>" . $row["phone"] . "<br>";
     				if($current_epoch == $row["start_day"] AND $current_epoch != $row["end_day"]) {
     					$calendar .= "Skift starter: " . sprintf("%02d:%02d", $row["start_time"]/60/60, ($row["start_time"]%(60*60)/60)) . "<br><hr><br>";
     				}
@@ -175,10 +243,11 @@ function draw_calendar($month,$year,$userID){
 	    				$calendar .= "Skift: Hele dagen <br><hr><br>";
 	    			}
 					if($row["canceled"] == 1) $calendar .= "</s></font>";
+                    if($currentDay > $row["end_day"]) $calendar .= "</s></font>";
     			}
 			} 
 			else {
-    			$calendar .= "Ingen skift";
+    			$calendar .= "";
 			}
 		// kalender logikk og table struktur
 		$calendar.= '</td>';
