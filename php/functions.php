@@ -241,23 +241,15 @@ function draw_calendar($month,$year,$userID){
 					// fordi det er fra den første listeboksen som velger lokasjon
 					// så om ikke lokasjon er riktig og changethis er satt til true skipper den
 					if ($row["location"]!= $location && $changeThis == true) goto skipthis;
+
     			    if($currentDay > $row["end_day"]) $calendar .= "<font color=\"grey\"><s>";
 					if($row["canceled"] == 1) $calendar .= "<font color=\"grey\"><s>";
     				$calendar .= "Lokasjon: " . $row["location"] . "<br>" . $row["name"] . "<br>" . $row["phone"] . "<br>";
-    				if($current_epoch == $row["start_day"] AND $current_epoch != $row["end_day"]) {
-    					$calendar .= "Skift starter: " . sprintf("%02d:%02d", $row["start_time"]/60/60, ($row["start_time"]%(60*60)/60)) . "<br><hr><br>";
-    				}
-    				if($current_epoch == $row["start_day"] AND $current_epoch == $row["end_day"]) {
-    					$calendar .= "Skift starter: " . sprintf("%02d:%02d", $row["start_time"]/60/60, ($row["start_time"]%(60*60)/60)) . "<br>";
-    				}
-    				if($current_epoch == $row["end_day"]) {
-    					$calendar .= "Skift slutter: " . sprintf("%02d:%02d", $row["end_time"]/60/60, ($row["end_time"]%(60*60)/60)) . "<br><hr><br>";
-    				}
-    				if($current_epoch != $row["start_day"] AND $current_epoch != $row["end_day"]) {
-	    				$calendar .= "Skift: Hele dagen <br><hr><br>";
-	    			}
+	    			$calendar .= "Skift starter: " . sprintf("%02d:%02d", $row["start_time"]/60/60, ($row["start_time"]%(60*60)/60)) . "<br>";
+					$calendar .= "Skift slutter: " . sprintf("%02d:%02d", $row["end_time"]/60/60, ($row["end_time"]%(60*60)/60)) . "<br><hr><br>";
 					if($row["canceled"] == 1) $calendar .= "</s></font>";
                     if($currentDay > $row["end_day"]) $calendar .= "</s></font>";
+					
 					skipthis:
     			}
 			} 
