@@ -145,11 +145,13 @@ function listboxForShiftID()
         $start_day = $row["start_day"];
         $end_day = $row["end_day"];
         $start_time = sprintf("%02d:%02d", $row["start_time"]/60/60, ($row["start_time"]%(60*60)/60));
-        $convertedDay = date("j-m-y", $start_day);
+        $end_time = sprintf("%02d:%02d", $row["end_time"]/60/60, ($row["end_time"]%(60*60)/60));
+        $convertedStartDay = date("j-m-y", $start_day);
+		$convertedEndDay = date("j-m-y", $end_day);
 
 		/* printer option om skiftet ikke er samme dag eller tidligere */
         if($end_day > $currentDay){
-        print ("<option value='$shiftID'>$convertedDay $start_time | $name </option>");
+        print ("<option value='$shiftID'>$convertedStartDay $start_time til $end_time | $name </option>");
 		}
     }
     print("</select>");
@@ -175,7 +177,6 @@ echo draw_calendar($d->format('m'),$d->format('Y'), $userID);
 function draw_calendar($month,$year,$userID){
     
 	date_default_timezone_set('Europe/Oslo');
-	include 'config.php';
 
 	/* setter opp tilkoblingen */
 	include 'config.php';
@@ -205,6 +206,9 @@ function draw_calendar($month,$year,$userID){
 		$days_in_this_week++;
 	endfor;
 
+	$location = $_POST["listboxLocation"];
+	$changeThis = false;
+
 	/* fortsetter med dagene */
 	for($list_day = 1; $list_day <= $days_in_month; $list_day++):
 		$calendar.= '<td class="calendar-day">';
@@ -223,15 +227,20 @@ function draw_calendar($month,$year,$userID){
 
             /* lager sql spørring for å hente data med informasjon fra config.php */
 			if($userID == null){
-            	$sql ="SELECT * FROM $tablename JOIN user ON $tablename.userID=user.userID WHERE $current_epoch BETWEEN start_day AND end_day";
+				$changeThis = true;
+            	$sql ="SELECT * FROM user JOIN $tablename ON user.userID=$tablename.userID WHERE $current_epoch BETWEEN start_day AND end_day";
 			} else{
 				$sql ="SELECT * FROM $tablename JOIN user ON $tablename.userID=user.userID WHERE $tablename.userID = $userID AND $current_epoch BETWEEN start_day AND end_day";
 			}
 			$result = mysqli_query($conn, $sql);
-    		
+
     		if (mysqli_num_rows($result) > 0) {
     			/* setter ut data av hver eneste rad */
     			while($row = mysqli_fetch_assoc($result)) {
+					// skip om $userID er null som setter $changeThis til true
+					// fordi det er fra den første listeboksen som velger lokasjon
+					// så om ikke lokasjon er riktig og changethis er satt til true skipper den
+					if ($row["location"]!= $location && $changeThis == true) goto skipthis;
     			    if($currentDay > $row["end_day"]) $calendar .= "<font color=\"grey\"><s>";
 					if($row["canceled"] == 1) $calendar .= "<font color=\"grey\"><s>";
     				$calendar .= "Lokasjon: " . $row["location"] . "<br>" . $row["name"] . "<br>" . $row["phone"] . "<br>";
@@ -249,6 +258,7 @@ function draw_calendar($month,$year,$userID){
 	    			}
 					if($row["canceled"] == 1) $calendar .= "</s></font>";
                     if($currentDay > $row["end_day"]) $calendar .= "</s></font>";
+					skipthis:
     			}
 			} 
 			else {

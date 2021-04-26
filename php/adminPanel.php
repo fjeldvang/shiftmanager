@@ -150,7 +150,7 @@ else{
 </table><br/>
 
 <form method="post" action="" enctype="multipart/form-data" id="showLocation" name="showLocation" class="showLocation" onsubmit="#">
-    Filtrer etter lokasjon  <?php listboxForLocation(); ?> <br/>
+    Filtrer etter ansatt på lokasjon </br> <?php listboxForLocation(); ?> <br/>
     <p><input name="find" type="submit" value="Velg lokasjon" /></p>
 </form>
 <?php 

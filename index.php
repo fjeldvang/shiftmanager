@@ -50,11 +50,10 @@ include 'php/config.php';
 if($_SESSION["admin"] == "true")
 {
     if(isset($_POST["listboxLocation"])){
-
-    print("<form method='post' action='' enctype='multipart/form-data' id='listboxForUserIDByLocation' name='listboxForUserIDByLocation' class ='listboxForUserIDByLocation' onsubmit=''>");
-    listboxForUserIDByLocation();
-    print("<p><input name='listboxForUserIDByLocation' type='submit' value='Velg ansatt' /></p>");
-    print("</form>");
+		print("<form method='post' action='' enctype='multipart/form-data' id='listboxForUserIDByLocation' name='listboxForUserIDByLocation' class ='listboxForUserIDByLocation' onsubmit=''>");
+		listboxForUserIDByLocation();
+		print("<p><input name='listboxForUserIDByLocation' type='submit' value='Filtrer etter ansatt' /></p>");
+		print("</form>");
     }
 
 	/* venter her med å gå videre til listbox er set, henter verdi og tegner kalender */
@@ -66,7 +65,7 @@ if($_SESSION["admin"] == "true")
 	/* viser egen timeplan til å begynne med */
 	elseif(!isset($_POST["listbox"]))
 	{	
-		$userID=$_SESSION["userID"];
+		$userID= null;
 		prepareToDrawCalendar($months, $userID);
 	}
 }

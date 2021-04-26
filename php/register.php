@@ -14,6 +14,10 @@ ini_set('display_errors', 0);
 <body>
 
 <?php
+// for eventuell 5 dagers faste skift registrering og datetime konvertering
+// https://www.php.net/manual/en/dateinterval.construct.php
+// https://stackoverflow.com/questions/2515047/how-do-i-add-24-hours-to-a-unix-timestamp-in-php
+
 
 		include 'config.php';
 		
