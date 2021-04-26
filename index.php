@@ -1,8 +1,8 @@
 <?php
-
-/* Inneholder hovedsiden og alle brukerfunksjoner */ 
-
 session_start();
+error_reporting(0);
+ini_set('display_errors', 0);
+/* Inneholder hovedsiden og alle brukerfunksjoner */ 
 @$loginUser = $_SESSION["username"];
 if (!$loginUser)
 {
@@ -43,20 +43,21 @@ if($_SESSION["admin"] == "true"){
 /* config inneholder $months, et array av alle månedene. trengs når man bruker draw_calendar() */
 include 'php/config.php';
 
-/* sjekker om innlogget bruker er admin, henter deretter bruker fra listeboks for å velge view */
+/* sjekker om innlogget bruker er admin, henter deretter bruker fra listeboks for å velge view 
+ * dette er en rar måte å gjøre det på egentlig, men $_SESSION er ikke veldig glad i ordentlig bool
+ * keep it simple, stupid! 
+ */
 if($_SESSION["admin"] == "true")
 {
     if(isset($_POST["listboxLocation"])){
 
     print("<form method='post' action='' enctype='multipart/form-data' id='listboxForUserIDByLocation' name='listboxForUserIDByLocation' class ='listboxForUserIDByLocation' onsubmit=''>");
     listboxForUserIDByLocation();
-    print("<p><input name='listboxForUserIDByLocation' type='submit' value='Velg lokasjon' /></p>");
+    print("<p><input name='listboxForUserIDByLocation' type='submit' value='Velg ansatt' /></p>");
     print("</form>");
     }
 
-    /* !!!if isset location listeboks print user listbox med sql where location like location!!! */
-
-	/* venter her med å gå videre til listbox2 er set, henter verdi og tegner kalender */
+	/* venter her med å gå videre til listbox er set, henter verdi og tegner kalender */
     if(isset($_POST["listbox"]))
 	{
         $userID=$_POST["listbox"];

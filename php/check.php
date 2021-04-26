@@ -1,11 +1,8 @@
 <?php
-
-// Inneholder en funksjon for å sjekke om brukernavn og passord er korrekt
-
-
-// trenger disse da det kommer ganske forstyrrende warning om man er uheldig og skriver feil brukernavn/passord
+session_start();
 error_reporting(0);
 ini_set('display_errors', 0);
+// Inneholder en funksjon for å sjekke om brukernavn og passord er korrekt
 
 function checkUserPass($username, $password){
     $servername = "localhost";

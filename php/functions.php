@@ -1,11 +1,13 @@
 <?php
-
+session_start();
+error_reporting(0);
+ini_set('display_errors', 0);
 // https://www.linkedin.com/pulse/why-should-you-switch-pdo-from-mysql-mysqli-diwaker-mishra/
 
 function getUserID($usn){
 	/* Henter userID fra database med valgt brukernavn og setter som admin */
     include 'config.php';
-    $conn = mysqli_connect($servername, $username, $password,  $dbname);
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
 
 	$sqlQuery = "SELECT * FROM user WHERE username LIKE '$usn'";
     $sqlResult = mysqli_query($conn, $sqlQuery) or die("Funker ikke");
@@ -103,7 +105,7 @@ function listboxForLocation()
     include 'config.php';
     $conn = mysqli_connect($servername, $username, $password,  $dbname);
 
-    $sqlQuery = "SELECT * FROM location order by location;";
+    $sqlQuery = "SELECT * FROM location ORDER BY location;";
     $sqlResult = mysqli_query($conn, $sqlQuery) or die("Ikke mulig å hente data fra databasen");
     $numRows = mysqli_num_rows($sqlResult);
 
@@ -197,7 +199,7 @@ function draw_calendar($month,$year,$userID){
 	/* raden for uke 1 */
 	$calendar.= '<tr class="calendar-row">';
 
-	/* blanke dager på kalenderen helt til dag 1 */
+	/* grå dager på kalenderen helt til dag 1 */
 	for($x = 0; $x < $running_day; $x++):
 		$calendar.= '<td class="calendar-day-np"> </td>';
 		$days_in_this_week++;
@@ -220,8 +222,11 @@ function draw_calendar($month,$year,$userID){
             $currentDay = $d->getTimestamp();
 
             /* lager sql spørring for å hente data med informasjon fra config.php */
-            $sql ="SELECT * FROM $tablename JOIN user ON $tablename.userID=user.userID WHERE $tablename.userID = $userID AND $current_epoch BETWEEN start_day AND end_day";
-
+			if($userID == null){
+            	$sql ="SELECT * FROM $tablename JOIN user ON $tablename.userID=user.userID WHERE $current_epoch BETWEEN start_day AND end_day";
+			} else{
+				$sql ="SELECT * FROM $tablename JOIN user ON $tablename.userID=user.userID WHERE $tablename.userID = $userID AND $current_epoch BETWEEN start_day AND end_day";
+			}
 			$result = mysqli_query($conn, $sql);
     		
     		if (mysqli_num_rows($result) > 0) {
@@ -262,7 +267,7 @@ function draw_calendar($month,$year,$userID){
 		$days_in_this_week++; $running_day++; $day_counter++;
 	endfor;
 
-	/* resten av dagene i uken */
+	/* ugyldige dager på slutten av kalenderen som ikke er dager i måneden */
 	if($days_in_this_week < 8 AND $days_in_this_week > 1):
 		for($x = 1; $x <= (8 - $days_in_this_week); $x++):
 			$calendar.= '<td class="calendar-day-np"> </td>';

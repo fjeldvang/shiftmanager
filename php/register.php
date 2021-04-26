@@ -1,5 +1,7 @@
 <?php
 session_start();
+error_reporting(0);
+ini_set('display_errors', 0);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -15,10 +17,8 @@ session_start();
 
 		include 'config.php';
 		
-		// Create connection
+		// sjekk og lag tilkobling
 		$conn = mysqli_connect($servername, $username, $password,  $dbname);
-		
-		// Check connection
 		if (!$conn) {
 			die("Connection failed: " . mysqli_connect_error());
 		}
@@ -36,13 +36,12 @@ session_start();
         print("<h3>Velg bruker fra listeboksen</h3>");
         }
         else {
-
             $sql = "SELECT * FROM $tablename WHERE userID='$userID' AND (start_day>=$start_day OR end_day>=$start_day) AND canceled=0";
             $result = mysqli_query($conn, $sql);
+            // sjekker etter relevante dager i db
             if (mysqli_num_rows($result) > 0) {
-                // handle every row
                 while ($row = mysqli_fetch_assoc($result)) {
-                    // check overlapping at 10 minutes interval
+                    // sjekker på 10 min intervaller om det er registrert skift
                     for ($i = $start_epoch; $i <= $end_epoch; $i = $i + 600) {
                         if ($i > ($row["start_day"] + $row["start_time"]) && $i < ($row["end_day"] + $row["end_time"])) {
                             echo '<h3><font color="red">Et skift er allerede registrert på denne dagen for valgt bruker</font></h3>';
