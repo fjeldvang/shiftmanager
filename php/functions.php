@@ -236,10 +236,14 @@ function draw_calendar($month,$year,$userID){
     		if (mysqli_num_rows($result) > 0) {
     			/* setter ut data av hver eneste rad */
     			while($row = mysqli_fetch_assoc($result)) {
+					
 					// skip om $userID er null som setter $changeThis til true
 					// fordi det er fra den første listeboksen som velger lokasjon
 					// så om ikke lokasjon er riktig og changethis er satt til true skipper den
 					if ($row["location"]!= $location && $changeThis == true) goto skipthis;
+
+					// filtrerer ut lørdag/søndag
+					if ($days_in_this_week > 6 || $days_in_this_week <2) goto skipthis;
 
     			    if($currentDay > $row["end_day"]) $calendar .= "<font color=\"grey\"><s>";
 					if($row["canceled"] == 1) $calendar .= "<font color=\"grey\"><s>";
