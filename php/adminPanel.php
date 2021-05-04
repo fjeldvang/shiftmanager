@@ -13,7 +13,7 @@ else{
 <html>
 <head>
     <title>Shiftmanager Marcussen Efte</title>
-    <link href="css/stylesheet.css" rel="stylesheet">
+    <link href="css/stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <table border="1" cellpadding="5" width="800">

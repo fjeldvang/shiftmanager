@@ -18,8 +18,8 @@ else
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<title>Marcussen Efte kalender</title>
-		<link href="css/stylesheet.css" rel="stylesheet">
-		<link href="css/jquery-ui.css" rel="stylesheet">
+		<link href="css/stylesheet.css" rel="stylesheet" type="text/css"/>
+		<link href="css/jquery-ui.css" rel="stylesheet" type="text/css"/>
 		<script src="javascript/jquery-1.10.2.js"></script>
 		<script src="javascript/jquery-ui.js"></script>
 		<script src="javascript/datepicker.js"></script>
@@ -27,7 +27,9 @@ else
 	</head>
 	
 <body>
-	<h1>Shiftmanager Marcussen Efte</h1>
+	<div class = "overskrift">
+		<h1>Shiftmanager Marcussen Efte</h1>
+	</div>
 <?php
 
 print("<p>" . "Velkommen " . $loginUser . "<p>" . "<br>");
