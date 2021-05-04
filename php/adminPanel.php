@@ -9,7 +9,13 @@ if($_SESSION["admin"] != "true"){
 } 
 else{
 ?>
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shiftmanager Marcussen Efte</title>
+    <link href="css/stylesheet.css" rel="stylesheet">
+</head>
+<body>
 <table border="1" cellpadding="5" width="800">
 	<tr>
 		<td valign="top">
@@ -26,9 +32,9 @@ else{
 <tr>
     <td>Skift tid:</td>
     <td>
-        <input id="from" name="start_day" required="" type="text"  autocomplete="off" /></td>
+        <input id="from" name="start_day" placeholder="Skift start" required="" type="text"  autocomplete="off" /></td>
     <td>-</td>
-    <td><input id="to" name="end_day" required="" type="text"  autocomplete="off" /></td>
+    <td><input id="to" name="end_day" placeholder="Skift slutt" required="" type="text"  autocomplete="off" /></td>
 </tr>
 <tr>
     <td>&nbsp;</td>
@@ -126,11 +132,11 @@ else{
 <h3>Lag ny bruker</h3>
 
 <form method="post" action="php/newUser.php" enctype="multipart/form-data" id="createUser" name="createUser" class ="createUser" onsubmit="#">
-    Fornavn/Etternavn<input type="text" id="fname" name="fname"><br>
-    Brukernavn<input type="text" id="username" name="username"><br>
-    Passord<input type="password" id="password" name="password"><br>
-    Telefonnr<input type="text" id="phone" name="phone"><br>
-    Lokasjon<br><?php listboxForLocation() ?><br><br>
+    <input type="text" placeholder="Fornavn/Etternavn" id="fname" name="fname"><br>
+    <input type="text" id="username" placeholder="Brukernavn" name="username"><br>
+    <input type="password" placeholder="Passord" id="password" name="password"><br>
+    <input type="text" placeholder="telefonnummer" id="phone" name="phone"><br>
+    <br><?php listboxForLocation() ?><br><br>
     <input type="checkbox" id="admin" name="admin" value="admin">
     <label for="admin"> Sett som admin? </label>
     <p><input name="find" type="submit" value="Lag ny bruker" /></p>
@@ -150,9 +156,11 @@ else{
 </table><br/>
 
 <form method="post" action="" enctype="multipart/form-data" id="showLocation" name="showLocation" class="showLocation" onsubmit="#">
-    Filtrer etter ansatt på lokasjon </br> <?php listboxForLocation(); ?> <br/>
-    <p><input name="find" type="submit" value="Velg lokasjon" /></p>
+    Filtrer etter ansatt på lokasjon </br> <div class= "showSelect"> <?php listboxForLocation(); ?> <br/> </div>
+    <p><input class="button" name="find" type="submit" value="Velg lokasjon" /></p>
 </form>
 <?php 
 } 
 ?>
+</body>
+</html>

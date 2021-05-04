@@ -157,7 +157,8 @@ function listboxForShiftID()
     print("</select>");
 }
 
-// forbereder tegning av kalender med array av måneder for en spesifikk brukerID
+// forbereder tegning av kalender med array av måneder for en brukerID
+// men viser alle om brukerID er null, se draw_calendar()
 function prepareToDrawCalendar($months, $userID)
 {
 $d = new DateTime(date("Y-m-d"));
@@ -178,11 +179,9 @@ function draw_calendar($month,$year,$userID){
     
 	date_default_timezone_set('Europe/Oslo');
 
-	/* setter opp tilkoblingen */
+	/* setter opp tilkoblingen og validerer */
 	include 'config.php';
 	$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-	/* validerer tilkobling */
 	if (!$conn) {
     	die("Connection failed: " . mysqli_connect_error());
 	}

@@ -1,7 +1,7 @@
 <?php
 
 	/* Kjør denne filen på en server for å opprette database tabeller.
-	Endre på config.php først med riktig db informasjon. */
+	NB: Endre på config.php først med riktig db informasjon. */
 
 	include 'config.php';
 	
@@ -10,6 +10,19 @@
 	if (!$conn) {
 		die("Connection failed: " . mysqli_connect_error());
 	}
+
+	// lager "location" tabellen
+	$tablename = "location";
+	$sql = "CREATE TABLE $tablename (
+		location VARCHAR(80) PRIMARY KEY NOT NULL
+	)";
+	if (mysqli_query($conn, $sql)) {
+		echo "Table " . $tablename . " created successfully";
+	} 
+	else {
+		echo "Error creating table: " . mysqli_error($conn);
+	}
+
 	// lager "user" tabellen
 	$tablename = "user";
 	$sql = "CREATE TABLE $tablename (
@@ -17,17 +30,20 @@
 		name VARCHAR(50) NOT NULL,
 		username VARCHAR(45) NOT NULL,
 		password VARCHAR(45) NOT NULL,
-		phone INT(11) NOT NULL
+		phone INT(11) UNSIGNED NOT NULL,
+		location VARCHAR (80) NOT NULL,
+		FOREIGN KEY (location) REFERENCES location(location)
 	)";
 	
 	if (mysqli_query($conn, $sql)) {
 		echo "Table " . $tablename . " created successfully";
-		$sql = "INSERT INTO $tablename (userID, name, username, password, phone) VALUES(1, 'Administrator', '$admusername', '$admpassword', null)";
+		$sql = "INSERT INTO $tablename (userID, name, username, password, phone, location) VALUES(1, 'Administrator', '$admusername', '$admpassword', null, null)";
 		if(mysqli_query($conn, $sql)){
 			echo "Administrator user added to " . $tablename . " with the userID 1, username $admusername and password $admpassword";
 		}
 		else {
 			echo "Error: " . mysqli_error($conn);
+			echo "couldn't add Administrator user to table";
 		}
 	} 
 	else {
@@ -42,7 +58,7 @@
 	end_day INT(11),
 	start_time INT(11),
 	end_time INT(11),
-	canceled INT(1),
+	canceled INT(1) ,
 	userID int(11) UNSIGNED NOT NULL,
 	FOREIGN KEY (userID) REFERENCES user(userID)
 	)";
