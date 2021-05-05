@@ -242,7 +242,7 @@ function draw_calendar($month,$year,$userID){
 					if ($row["location"]!= $location && $changeThis == true) goto skipthis;
 
 					// filtrerer ut lørdag/søndag
-					if ($days_in_this_week > 6 || $days_in_this_week <2) goto skipthis;
+					if ($days_in_this_week > 7 || $days_in_this_week ==1) goto skipthis;
 					
 					// ellers fullfør objekt 
     			    if($currentDay > $row["end_day"]) $calendar .= "<font color=\"grey\"><s>";

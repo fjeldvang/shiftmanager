@@ -6,9 +6,9 @@ ini_set('display_errors', 0);
 
 function checkUserPass($username, $password){
     $servername = "localhost";
-    $us ="225299";
+    $us ="224887";
     $pw = "992522";
-    $dbname = "225299";
+    $dbname = "224887";
     // koble til db
     $conn = mysqli_connect($servername, $us, $pw, $dbname);
 
