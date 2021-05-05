@@ -27,9 +27,11 @@ else
 	</head>
 	
 <body>
-	<div class = "overskrift" style="margin:auto;">
-		<img src="picture/logo-big.png" style="max-width:50%;margin-left:25%;">
-	</div>
+	<div class="section_shadowPage">
+    	<div class="container_shadowPage w-container">
+			<div class = "overskrift" style="margin:auto;">
+				<img src="picture/logo-big.png" style="max-width:50%;margin-left:25%;">
+			</div>
 <?php
 
 print("<p>" . "Velkommen " . $loginUser . "<p>" . "<br>");
@@ -85,5 +87,7 @@ print '<br/>';
 print '<br/>';
 }
 ?>
+</div>
+</div>
 </body>
 </html>

@@ -3,10 +3,11 @@ html *
 {
    /*font-family: Arial !important;*/
 }
-body{
+body {
 	background-color: #262425;
-	margin:auto;
-	width:75%;
+	margin: auto;
+	width: 50%;
+  	padding: 10px;
 	color: white;
 }
 table.calendar {
@@ -16,7 +17,7 @@ tr.calendar-row {
 }
 td.calendar-day {
 	min-height: 80px;
-	width:8%;
+	width: 8%;
 	font-size: 16px;
 	position: relative;
 	vertical-align: top;
@@ -83,4 +84,22 @@ td.calendar-day, td.calendar-day-np {
 }
 .overskrift{
 	font-size: 30px;
+}
+.section_shadowPage {
+	padding-right: 0px;
+}
+.container {
+	width: 100%;
+   	max-width: 1200px;
+	margin-top: 0px;
+	margin-right: auto;
+   	margin-left: auto;
+	padding-right: 0px;
+   	padding-left: 0px;
+}
+.container_shadowPage {
+	max-width: 1200px;
+	margin-top: 30px;
+	padding: 30px 10px;
+	box-shadow: 3px 3px 20px 4px rgba(0, 0, 0, 0.53);
 }
