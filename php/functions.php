@@ -241,6 +241,10 @@ function draw_calendar($month,$year,$userID){
 					// så om ikke lokasjon er riktig og changethis er satt til true skipper den
 					if ($row["location"]!= $location && $changeThis == true) goto skipthis;
 
+					// filtrerer ut lørdag/søndag
+					if ($days_in_this_week > 6 || $days_in_this_week <2) goto skipthis;
+					
+					// ellers fullfør objekt 
     			    if($currentDay > $row["end_day"]) $calendar .= "<font color=\"grey\"><s>";
 					if($row["canceled"] == 1) $calendar .= "<font color=\"grey\"><s>";
     				$calendar .= "Lokasjon: " . $row["location"] . "<br>" . $row["name"] . "<br>" . $row["phone"] . "<br>";

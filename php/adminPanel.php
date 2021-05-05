@@ -16,13 +16,13 @@ else{
     <link href="css/stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<table border="1" cellpadding="5" width="800">
+<table border="1" cellpadding="5" width="100%">
 	<tr>
 		<td valign="top">
         
 		<form action="php/register.php" method="post" class="regForm">
 			<h3>Registrer skift</h3>
-			<table style="width: 70%">
+			<table>
 				<tr>
 					<td>Navn:</td>
                     <td><?php listboxForUserID();?></td>
@@ -119,6 +119,7 @@ else{
 
 </td>
 <td valign="top">
+<table style="width: 100%">
     <h3>Slett skift</h3>
 
     <form action="php/delete.php" method="post" class="deleteForm">
@@ -126,8 +127,14 @@ else{
         <?php listboxForShiftID(); ?>
         <p><input name="delete" type="submit" value="Slett" /></p>
     </form>
-
+</table>
 </td>
+</tr>
+</table>
+
+<table border="1" cellpadding="5" width="100%">
+    <tbody>
+        <tr>
 <td valign="top">
 <h3>Lag ny bruker</h3>
 
@@ -150,13 +157,13 @@ else{
     <?php listboxForUserID(); ?>
     <p><input name="delUser" type="submit" value="Slett bruker" /></p>
 </form>
-
 </td>
 </tr>
-</table><br/>
+</tbody>
+</table>
 
 <form method="post" action="" enctype="multipart/form-data" id="showLocation" name="showLocation" class="showLocation" onsubmit="#">
-    Filtrer etter ansatt på lokasjon </br> <div class= "showSelect"> <?php listboxForLocation(); ?> <br/> </div>
+    <p>Filtrer etter ansatt på lokasjon</p> </br> <div class= "showSelect"> <?php listboxForLocation(); ?> <br/> </div>
     <p><input class="button" name="find" type="submit" value="Velg lokasjon" /></p>
 </form>
 <?php 

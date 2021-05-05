@@ -6,7 +6,7 @@ ini_set('display_errors', 0);
 @$loginUser = $_SESSION["username"];
 if (!$loginUser)
 {
-    print ("Denne siden krever innlogging <br />");
+    print ("<br />");
     include("php/login.php");
 }
 else
@@ -54,7 +54,7 @@ if($_SESSION["admin"] == "true")
     if(isset($_POST["listboxLocation"])){
 		print("<form method='post' action='' enctype='multipart/form-data' id='listboxForUserIDByLocation' name='listboxForUserIDByLocation' class ='listboxForUserIDByLocation' onsubmit=''>");
 		listboxForUserIDByLocation();
-		print("<p><input name='listboxForUserIDByLocation' type='submit' value='Filtrer etter ansatt' /></p>");
+		print("<p><input class='button' name='listboxForUserIDByLocation' type='submit' value='Filtrer etter ansatt' /></p>");
 		print("</form>");
     }
 
@@ -80,8 +80,9 @@ else
 
 print '<br/>';
 print '<br/>';
-print("<a href='php/logout.php'>Logg ut</a>");
-
+print("<p><a href='php/logout.php' class='button' >Logg ut</a></p>");
+print '<br/>';
+print '<br/>';
 }
 ?>
 </body>
