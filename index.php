@@ -17,7 +17,7 @@ else
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-		<title>Marcussen Efte kalender</title>
+		<title>Marcussen Eftf kalender</title>
 		<link href="css/stylesheet.css" rel="stylesheet" type="text/css"/>
 		<link href="css/jquery-ui.css" rel="stylesheet" type="text/css"/>
 		<script src="javascript/jquery-1.10.2.js"></script>
@@ -27,8 +27,8 @@ else
 	</head>
 	
 <body>
-	<div class = "overskrift">
-		<h1>Shiftmanager Marcussen Efte</h1>
+	<div class = "overskrift" style="margin:auto;">
+		<img src="picture/logo-big.png" style="max-width:50%;margin-left:25%;">
 	</div>
 <?php
 
