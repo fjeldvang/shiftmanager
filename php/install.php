@@ -30,8 +30,8 @@
 		name VARCHAR(50) NOT NULL,
 		username VARCHAR(45) NOT NULL,
 		password VARCHAR(45) NOT NULL,
-		phone INT(11) UNSIGNED NOT NULL,
-		location VARCHAR (80) NOT NULL,
+		phone INT(11) UNSIGNED,
+		location VARCHAR (80),
 		FOREIGN KEY (location) REFERENCES location(location)
 	)";
 	
