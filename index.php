@@ -40,7 +40,6 @@ include_once 'php/functions.php';
 
 /* sjekker om man er admin fra login, inkluderer admin panel om det er tilfellet */
 if($_SESSION["admin"] == "true"){
-    //flytte denne ned?
     include 'php/adminPanel.php';
 }
 

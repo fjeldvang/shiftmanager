@@ -2,7 +2,6 @@
 session_start();
 error_reporting(0);
 ini_set('display_errors', 0);
-// https://www.linkedin.com/pulse/why-should-you-switch-pdo-from-mysql-mysqli-diwaker-mishra/
 
 function getUserID($usn){
 	/* Henter userID fra database med valgt brukernavn og setter som admin */

@@ -4,16 +4,14 @@ error_reporting(0);
 ini_set('display_errors', 0);
 // Inneholder en funksjon for å sjekke om brukernavn og passord er korrekt
 
-function checkUserPass($username, $password){
-    $servername = "localhost";
-    $us ="224887";
-    $pw = "992522";
-    $dbname = "224887";
+function checkUserPass($us, $pw){
+
+    include 'config.php';
     // koble til db
-    $conn = mysqli_connect($servername, $us, $pw, $dbname);
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
 
     $legalUser = true;
-    $sqlQuery = "SELECT * FROM user WHERE username='$username' AND password='$password';";
+    $sqlQuery = "SELECT * FROM user WHERE username='$us' AND password='$pw';";
     $sqlResult = mysqli_query($conn, $sqlQuery);
 
     if (!$sqlResult)

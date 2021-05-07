@@ -1,9 +1,9 @@
 <?php
 // set DB variabler her, sett tablename til skift tabellen
 	$servername = "localhost";
-	$username = "224887";
+	$username = "225299";
 	$password = "992522";
-	$dbname = "224887";
+	$dbname = "225299";
 	$tablename = "shifts";
 
 	// array av måneder og headings til kalenderen

@@ -35,7 +35,7 @@ ini_set('display_errors', 0);
                     if(mysqli_num_rows($result)>0 && $_SESSION["userID"]==1){
                         $sql ="DELETE FROM isadmin WHERE userID = $userID";
                         mysqli_query($conn, $sql);
-                        //fortsetter fra del
+                        // fortsetter fra del:
                         goto del;
                     } 
                     elseif(mysqli_num_rows($result)>0 && $_SESSION["userID"]!=1){
@@ -44,7 +44,6 @@ ini_set('display_errors', 0);
                         echo 'Login med userID 1 for å slette admin bruker';
                     }
                     else{
-
                         //herifra
                         del:
                         // sletter skift knyttet til bruker

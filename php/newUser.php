@@ -16,14 +16,13 @@ ini_set('display_errors', 0);
 <?php
 		include 'config.php';
         include 'functions.php';
-		// Create connection
+		// lag og sjekk tilkobling
 		$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-		// Check connection
 		if (!$conn) {
 			die("Connection failed: " . mysqli_connect_error());
 		}
         else {
+            // henter fra form
             $userID = null;
             $name = $_POST["fname"];
             $usn = $_POST["username"];
@@ -31,6 +30,7 @@ ini_set('display_errors', 0);
             $phone = $_POST["phone"];
             $location = $_POST["listboxLocation"];
 
+            // sjekker at ikke brukernavn er registrert fra før
             $sql = "SELECT * FROM user WHERE name ='$name' OR username ='$usn'";
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result) > 0) {
@@ -41,11 +41,13 @@ ini_set('display_errors', 0);
             {
                 $sql = "INSERT INTO user(username, name, phone, password, location) VALUES('$usn', '$name', '$phone', '$pw', '$location')";
 
+                // om spørringen går igjennom
                 if (mysqli_query($conn, $sql)) 
                 {
                     echo "<h3>Bruker laget</h3>";
 
                         if(isset($_POST["admin"]) && $_SESSION["userID"]==1){
+                            // henter UID og setter som admin
                             getUserID($userID, $usn);    
                         }
                         elseif(isset($_POST["admin"]) && $_SESSION["userID"]!=1){

@@ -28,6 +28,7 @@ ini_set('display_errors', 0);
         print("<h3>Velg skift fra listeboksen</h3>");
         }
         else {
+            // kansellerer skift
             $sql = "UPDATE $tablename SET canceled=1 WHERE id = $id";
             if (mysqli_query($conn, $sql)) {
                 echo "<h3>Skift kansellert.</h3>";

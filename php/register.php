@@ -14,11 +14,6 @@ ini_set('display_errors', 0);
 <body>
 
 <?php
-// for eventuell 5 dagers faste skift registrering og datetime konvertering
-// https://www.php.net/manual/en/dateinterval.construct.php
-// https://stackoverflow.com/questions/2515047/how-do-i-add-24-hours-to-a-unix-timestamp-in-php
-
-
 		include 'config.php';
 		
 		// sjekk og lag tilkobling
@@ -27,6 +22,7 @@ ini_set('display_errors', 0);
 			die("Connection failed: " . mysqli_connect_error());
 		}
 		
+        // konverterer til timestamp
 		$start_day = intval(strtotime(htmlspecialchars($_POST["start_day"])));
 		$start_time = (60*60*intval(htmlspecialchars($_POST["start_hour"]))) + (60*intval(htmlspecialchars($_POST["start_minute"])));
 		$end_day = intval(strtotime(htmlspecialchars($_POST["end_day"])));
@@ -54,7 +50,6 @@ ini_set('display_errors', 0);
                     }
                 }
             }
-
             $sql = "INSERT INTO $tablename (start_day, start_time, end_day, end_time, canceled, userID)
 			VALUES ($start_day, $start_time, $end_day, $end_time, 0, $userID)";
             if (mysqli_query($conn, $sql)) {
