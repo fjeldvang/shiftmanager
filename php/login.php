@@ -17,10 +17,10 @@ ini_set('display_errors', 0);
 <h3>Innlogging</h3>
 <form action="" id="loginForm" name="loginForm" method="post">
     <div class = "formbox">
-        <input name="username" type="text" placeholder="brukernavn" id="username"> <br />
+        <input name="username" type="text" placeholder="Brukernavn" id="username"> <br />
     </div>
     <div class="formbox">
-        <input name="password" type="password" placeholder="passord" id="password">  <br />
+        <input name="password" type="password" placeholder="Passord" id="password">  <br />
     </div>
     <input class="btn" type="submit" name="loginButton" value="Logg inn">
     <input class="btn" type="reset" name="reset" id="reset" value="Nullstill"> <br />
