@@ -9,16 +9,19 @@ ini_set('display_errors', 0);
 <head>
     <link href="css/stylesheet.css" rel="stylesheet" type="text/css"/>
     <link href="css/login.css" rel="stylesheet" type="text/css"/>
+    <!-- test ut disse ikonene utenom xampp -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 </head>
 <body>
 <div class ="login-container">
+<div class ="login-box">
 <h3>Innlogging</h3>
 <form action="" id="loginForm" name="loginForm" method="post">
-    <div class = "formbox">
-        <input name="username" type="text" placeholder="Brukernavn" id="username"> <br />
+    <div class = "textbox">
+        <input name="username" type="text" placeholder="brukernavn" id="username"> <br />
     </div>
-    <div class="formbox">
-        <input name="password" type="password" placeholder="Passord" id="password">  <br />
+    <div class="textbox">
+        <input name="password" type="password" placeholder="passord" id="password">  <br />
     </div>
     <input class="btn" type="submit" name="loginButton" value="Logg inn">
     <input class="btn" type="reset" name="reset" id="reset" value="Nullstill"> <br />
@@ -26,21 +29,17 @@ ini_set('display_errors', 0);
 </div>
 <img src="picture/MMarcussen.jpg" class="marcussenbilde" width="420" height="420">
 <?php
-if (isset($_POST["loginButton"]))
-{
-
+if (isset($_POST["loginButton"])) {
+    
     $username = $_POST["username"];
     $password = $_POST["password"];
-    $userID = "fail";
-
-    include ("check.php");
-
-    if (!checkUserPass($username, $password))
-    {
-        print ("Feil brukernavn eller passord <br />");
-    }
-    else
-    {
+    $userID   = "fail";
+    
+    include("check.php");
+    
+    if (!checkUserPass($username, $password)) {
+        print("Feil brukernavn eller passord <br />");
+    } else {
         $_SESSION["username"] = $username;
         print("<meta http-equiv='refresh' content='0;url=index.php'>");
     }
