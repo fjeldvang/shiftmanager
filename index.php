@@ -28,7 +28,7 @@ else
 	
 <body>
 	<div class="section_shadowPage">
-    	<div class="container_shadowPage w-container">
+    	<div class="container_shadowPage">
 			<div class = "overskrift" style="margin:auto;">
 				<img src="picture/logo-big.png" style="max-width:50%;margin-left:25%;">
 			</div>
