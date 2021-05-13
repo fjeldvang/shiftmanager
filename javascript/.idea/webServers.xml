@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="e2a572f1-f4ba-44d2-9456-e6afe98a767b" name="Bachelor" url="http://localhost">
+        <fileTransfer mountedRoot="C:\xampp\htdocs\Bachelor" accessType="MOUNT" port="0" />
+      </webServer>
+    </option>
+  </component>
+</project>
