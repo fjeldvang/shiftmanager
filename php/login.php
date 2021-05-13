@@ -13,18 +13,21 @@ ini_set('display_errors', 0);
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 </head>
 <body>
-<div class ="login-box">
+<div class ="login-container">
 <h3>Innlogging</h3>
 <form action="" id="loginForm" name="loginForm" method="post">
-    <div class = "textbox">
+    <div class = "formbox">
         <input name="username" type="text" placeholder="brukernavn" id="username"> <br />
     </div>
-    <div class="textbox">
+    <div class="formbox">
         <input name="password" type="password" placeholder="passord" id="password">  <br />
     </div>
     <input class="btn" type="submit" name="loginButton" value="Logg inn">
     <input class="btn" type="reset" name="reset" id="reset" value="Nullstill"> <br />
 </form>
+</div>
+<div class="Marcussen-bilde">
+    <img src="picture/MMarcussen.jpg" width="450" height="450">
 </div>
 <?php
 if (isset($_POST["loginButton"]))
