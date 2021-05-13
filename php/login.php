@@ -13,13 +13,13 @@ ini_set('display_errors', 0);
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 </head>
 <body>
-<div class ="login-container">
+<div class ="login-box">
 <h3>Innlogging</h3>
 <form action="" id="loginForm" name="loginForm" method="post">
-    <div class = "formbox">
+    <div class = "textbox">
         <input name="username" type="text" placeholder="Brukernavn" id="username"> <br />
     </div>
-    <div class="formbox">
+    <div class="textbox">
         <input name="password" type="password" placeholder="Passord" id="password">  <br />
     </div>
     <input class="btn" type="submit" name="loginButton" value="Logg inn">

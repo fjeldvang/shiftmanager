@@ -106,3 +106,7 @@ td.calendar-day, td.calendar-day-np {
         min-width:460px;
     }
 }
+
+h3{
+	text-align:center;
+}
