@@ -18,7 +18,7 @@ else
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<title>Marcussen Eftf kalender</title>
-		<link href="css/stylesheet.css" rel="stylesheet" type="text/css"/>
+		<link href="css/stylesheet.css?<?=filemtime("css/stylesheet.css")?>" rel="stylesheet" type="text/css"/>
 		<link href="css/jquery-ui.css" rel="stylesheet" type="text/css"/>
 		<script src="javascript/jquery-1.10.2.js"></script>
 		<script src="javascript/jquery-ui.js"></script>
@@ -37,7 +37,7 @@ else
 print("<p>" . "Velkommen " . $loginUser . "<p>" . "<br>");
 /* inkluderer funksjonene for listeboks og kalender */
 include_once 'php/functions.php';
-
+print("<p><a href='php/logout.php' class='button' >Logg ut</a></p><br>");
 /* sjekker om man er admin fra login, inkluderer admin panel om det er tilfellet */
 if($_SESSION["admin"] == "true"){
     include 'php/adminPanel.php';

@@ -78,10 +78,6 @@ td.calendar-day, td.calendar-day-np {
 	cursor: pointer;
 	margin: 12px 0;
 }
-.deleteForm{
-	color: blue;
-	font-size: 80px;
-}
 .overskrift{
 	font-size: 30px;
 }
@@ -98,8 +94,14 @@ td.calendar-day, td.calendar-day-np {
    	padding-left: 0px;
 }
 .container_shadowPage {
-	max-width: 1200px;
+	max-width: 100%;
 	margin-top: 30px;
 	padding: 30px 10px;
 	box-shadow: 3px 3px 20px 4px rgba(0, 0, 0, 0.53);
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        width:100%;
+    }
 }

@@ -9,36 +9,19 @@ if($_SESSION["admin"] != "true"){
 } 
 else{
 ?>
-<!DOCTYPE html>
-<html>
 <head>
-    <title>Shiftmanager Marcussen Efte</title>
-    <link href="css/stylesheet.css" rel="stylesheet" type="text/css"/>
+    <link href="css/panelStylesheet.css?<?=filemtime("css/panelStylesheet.css")?>" rel="stylesheet" type="text/css"/>
 </head>
-<body>
-<table border="1" cellpadding="5" width="100%">
-	<tr>
-		<td valign="top">
-        
-		<form action="php/register.php" method="post" class="regForm">
-			<h3>Registrer skift</h3>
-			<table>
-				<tr>
-					<td>Navn:</td>
-                    <td><?php listboxForUserID();?></td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-    <td>Skift tid:</td>
-    <td>
-        <input id="from" name="start_day" placeholder="Skift start" required="" type="text"  autocomplete="off" /></td>
-    <td>-</td>
-    <td><input id="to" name="end_day" placeholder="Skift slutt" required="" type="text"  autocomplete="off" /></td>
-</tr>
-<tr>
-    <td>&nbsp;</td>
-    <td> <select name="start_hour">
+<div class="gridbox">
+	<div class="div1">
+	<form action="php/register.php" method="post" class="regForm">
+		<h3>Registrer skift</h3>
+		Navn:<?php listboxForUserID();?> <br><br>
+		<input id="from" name="start_day" placeholder="Skift start" required="" type="text"  autocomplete="off" />
+		<input id="to" name="end_day" placeholder="Skift slutt" required="" type="text"  autocomplete="off" />
+		<br>
+			
+			<select name="start_hour">
             <option>00</option>
             <option>01</option>
             <option>02</option>
@@ -68,9 +51,9 @@ else{
             <option>15</option>
             <option>30</option>
             <option>45</option>
-        </select></td>
-    <td>&nbsp;</td>
-    <td><select name="end_hour">
+        </select>
+		<br>
+		<select name="end_hour">
             <option>00</option>
             <option>01</option>
             <option>02</option>
@@ -100,44 +83,29 @@ else{
             <option>15</option>
             <option>30</option>
             <option>45</option>
-        </select></td>
-</tr>
-</table>
-<br><br>
-<input name="book" type="submit" value="Opprett skift" />
+        </select>
+	<br><br>
+	<input name="book" type="submit" value="Opprett skift" />
 </form>
-</td>
+</div>
+<div class="div2">
+<h3>Kanseller skift</h3>
+<form action="php/cancel.php" method="post" class="cancelForm">
+     <?php listboxForShiftID(); ?> <br>
+     <input name="cancel" type="submit" value="Kanseller" />
+</form>
+</div>
 
-<td valign="top">
-    <h3>Kanseller skift</h3>
+<div class="div3">
+<h3>Slett skift</h3>
+<form action="php/delete.php" method="post" class="deleteForm">
+     <?php listboxForShiftID(); ?> <br>
+     <input name="delete" type="submit" value="Slett" />
+</form>
+</div>
 
-    <form action="php/cancel.php" method="post" class="cancelForm">
-        <p></p>
-        <?php listboxForShiftID(); ?>
-        <p><input name="cancel" type="submit" value="Kanseller" /></p>
-    </form>
-
-</td>
-<td valign="top">
-<table style="width: 100%">
-    <h3>Slett skift</h3>
-
-    <form action="php/delete.php" method="post" class="deleteForm">
-        <p></p>
-        <?php listboxForShiftID(); ?>
-        <p><input name="delete" type="submit" value="Slett" /></p>
-    </form>
-</table>
-</td>
-</tr>
-</table>
-
-<table border="1" cellpadding="5" width="100%">
-    <tbody>
-        <tr>
-<td valign="top">
+<div class="div4">
 <h3>Lag ny bruker</h3>
-
 <form method="post" action="php/newUser.php" enctype="multipart/form-data" id="createUser" name="createUser" class ="createUser" onsubmit="#">
     <input type="text" placeholder="Fornavn/Etternavn" id="fname" name="fname"><br>
     <input type="text" id="username" placeholder="Brukernavn" name="username"><br>
@@ -148,24 +116,22 @@ else{
     <label for="admin"> Sett som admin? </label>
     <p><input name="find" type="submit" value="Lag ny bruker" /></p>
 </form>
+</div>
 
-</td>
-<td valign="top">
+<div class="div5">
 <h3>Slett bruker</h3>
 
 <form method="post" action="php/delUser.php" enctype="multipart/form-data" id="delUser" name="delUser" class ="delUser" onsubmit="#">
     <?php listboxForUserID(); ?>
     <p><input name="delUser" type="submit" value="Slett bruker" /></p>
 </form>
-</td>
-</tr>
-</tbody>
-</table>
-
+</div>
+</div>
 <form method="post" action="" enctype="multipart/form-data" id="showLocation" name="showLocation" class="showLocation" onsubmit="#">
     <p>Filtrer etter ansatt på lokasjon</p> </br> <div class= "showSelect"> <?php listboxForLocation(); ?> <br/> </div>
     <p><input class="button" name="find" type="submit" value="Velg lokasjon" /></p>
 </form>
+
 <?php 
 } 
 ?>
