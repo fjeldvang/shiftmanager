@@ -110,3 +110,10 @@ td.calendar-day, td.calendar-day-np {
 h3{
 	text-align:center;
 }
+
+.marcimg{
+	display:block;
+	margin:60% auto 0 auto;
+	max-width:30%;
+	height:auto;
+}

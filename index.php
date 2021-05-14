@@ -35,7 +35,7 @@ if (!$loginUser) {
     print("<p>" . "Velkommen " . $loginUser . "<p>" . "<br>");
     /* inkluderer funksjonene for listeboks og kalender */
     include_once 'php/functions.php';
-    print("<p><a href='php/logout.php' class='button' >Logg ut</a></p><br>");
+    print("<p><a href='php/logout.php' class='button' style='position:absolute;top:5%;width:60px;'>Logg ut</a></p><br>");
     /* sjekker om man er admin fra login, inkluderer admin panel om det er tilfellet */
     if ($_SESSION["admin"] == "true") {
         include 'php/adminPanel.php';
@@ -74,8 +74,7 @@ if (!$loginUser) {
     
     print '<br/>';
     print '<br/>';
-    print("<p><a href='php/logout.php' class='button' >Logg ut</a></p>");
-    print '<br/>';
+    print("<a href='php/logout.php' class='button' >Logg ut</a>");
     print '<br/>';
 }
 ?>
