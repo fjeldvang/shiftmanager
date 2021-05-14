@@ -8,18 +8,18 @@ ini_set('display_errors', 0);
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <link href="css/stylesheet.css?<?= filemtime("css/stylesheet.css") ?>" rel="stylesheet" type="text/css"/>
-    <link href="css/login.css" rel="stylesheet" type="text/css"/>
+    <link href="css/login.css?<?= filemtime("css/login.css") ?>" rel="stylesheet" type="text/css"/>
     <!-- test ut disse ikonene utenom xampp -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 </head>
 <body>
-<div class ="login-box">
+<div class ="login-container">
 <h3>Innlogging</h3>
 <form action="" id="loginForm" name="loginForm" method="post">
-    <div class = "textbox">
+    <div class = "formbox">
         <input name="username" type="text" placeholder="Brukernavn" id="username"> <br />
     </div>
-    <div class="textbox">
+    <div class="formbox">
         <input name="password" type="password" placeholder="Passord" id="password">  <br />
     </div>
     <input class="btn" type="submit" name="loginButton" value="Logg inn">
