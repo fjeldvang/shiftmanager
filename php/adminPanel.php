@@ -15,9 +15,11 @@ if ($_SESSION["admin"] != "true") {
     <div class="div1">
     <form action="php/register.php" method="post" class="regForm">
         <h3>Registrer skift</h3>
+        <div class="formlist">
         <?php
     listboxForUserID();
-?> <br><br>
+?> <br><br></div>
+        <div class="regsift">
         <input id="from" name="start_day" placeholder="Skift start" required="" type="text"  autocomplete="off" />
         <input id="to" name="end_day" placeholder="Skift slutt" required="" type="text"  autocomplete="off" />
         <br>
@@ -84,16 +86,17 @@ if ($_SESSION["admin"] != "true") {
             <option>30</option>
             <option>45</option>
         </select>
-    <br><br>
+    <br><br> </div>
     <input name="book" type="submit" value="Opprett skift" class='button' style="width:80%;"/>
 </form>
 </div>
 <div class="div2">
 <h3>Kanseller skift</h3>
 <form action="php/cancel.php" method="post" class="cancelForm">
+    <div class="formlist">
      <?php
     listboxForShiftID();
-?> <br>
+?> <br></div>
      <input name="cancel" type="submit" value="Kanseller" class='button' style="width:80%;"/>
 </form>
 </div>
@@ -101,9 +104,10 @@ if ($_SESSION["admin"] != "true") {
 <div class="div3">
 <h3>Slett skift</h3>
 <form action="php/delete.php" method="post" class="deleteForm">
+    <div class="formlist">
      <?php
     listboxForShiftID();
-?> <br>
+?> <br> </div>
      <input name="delete" type="submit" value="Slett" class='button' style="width:80%;"/>
 </form>
 </div>
@@ -111,13 +115,16 @@ if ($_SESSION["admin"] != "true") {
 <div class="div4">
 <h3>Lag ny bruker</h3>
 <form method="post" action="php/newUser.php" enctype="multipart/form-data" id="createUser" name="createUser" class ="createUser" onsubmit="#">
+    <div class="inputbruker">
     <input type="text" placeholder="Fornavn/Etternavn" id="fname" name="fname"><br>
     <input type="text" id="username" placeholder="Brukernavn" name="username"><br>
     <input type="password" placeholder="Passord" id="password" name="password"><br>
-    <input type="text" placeholder="telefonnummer" id="phone" name="phone"><br>
+    <input type="text" placeholder="Telefonnummer" id="phone" name="phone"><br>
+</div>
+    <div class="formlist">
     <?php
     listboxForLocation();
-?><br><br>
+?><br><br> </div>
     <input type="checkbox" id="admin" name="admin" value="admin">
     <label for="admin"> Sett som admin? </label><br>
     <input name="find" type="submit" value="Lag ny bruker" class='button' style="width:80%;"/>
@@ -128,17 +135,20 @@ if ($_SESSION["admin"] != "true") {
 <h3>Slett bruker</h3>
 
 <form method="post" action="php/delUser.php" enctype="multipart/form-data" id="delUser" name="delUser" class ="delUser" onsubmit="#">
+    <div class="formlist">
     <?php
     listboxForUserID();
-?>
+?> </div>
    <input name="delUser" type="submit" value="Slett bruker" class='button' style="width:80%;"/>
 </form>
 </div>
 </div>
 <form method="post" action="" enctype="multipart/form-data" id="showLocation" name="showLocation" class="showLocation" onsubmit="#">
-    <p>Filtrer etter ansatt på lokasjon</p> </br> <div class= "showSelect"> <?php
+    <p>Filtrer etter ansatt på lokasjon</p> </br> <div class= "showSelect">
+        <div class="formlist">
+     <?php
     listboxForLocation();
-?></div>
+?></div></div>
 <br><br>
     <input class="button" name="find" type="submit" value="Velg lokasjon" />
 </form>

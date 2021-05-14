@@ -98,3 +98,35 @@ form{
     text-align:center;
     width:100%;
 }
+.formlist select{
+  width: 50%;
+  padding:10px;
+  border-radius:10px;
+  text-align:center;
+  padding: 12px 20px;
+  margin: 8px 0;
+  background-color: #DCDCDC;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.inputbruker input{
+    background: none;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 15px;
+    margin: 8px;
+    border-bottom: 2px solid #F4F7FD;
+}
+.regsift input{
+    width: 50%;
+    background: none;
+    border: 2px solid #F4F7FD;
+    color: white;
+    padding: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 12px 0;
+}
