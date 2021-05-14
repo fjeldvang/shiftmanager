@@ -13,7 +13,7 @@ function checkUserPass($username, $password)
     $conn       = mysqli_connect($servername, $us, $pw, $dbname);
     
     $legalUser = true;
-    $sqlQuery  = "SELECT * FROM user WHERE username='$username' AND password='$password';";
+    $sqlQuery  = "SELECT * FROM user WHERE username='$username';";
     $sqlResult = mysqli_query($conn, $sqlQuery);
     
     if (!$sqlResult) {
@@ -21,11 +21,11 @@ function checkUserPass($username, $password)
     } else {
         $row           = mysqli_fetch_array($sqlResult);
         $savedUsername = $row["username"];
-        $savedPassword = $row["password"];
+        $dbPassword = $row["password"];
         setUserID($row["userID"]);
         checkIfAdmin($row["userID"], $conn);
         
-        if ($username != $savedUsername || $password != $savedPassword) {
+        if (!password_verify($password, $dbPassword)) {
             $legalUser = false;
         }
     }

@@ -25,9 +25,11 @@ if (!$conn) {
     $userID   = null;
     $name     = $_POST["fname"];
     $usn      = $_POST["username"];
-    $pw       = $_POST["password"];
+    //$pw       = $_POST["password"];
     $phone    = $_POST["phone"];
     $location = $_POST["listboxLocation"];
+    $hashpw   = password_hash($_POST["password"], PASSWORD_DEFAULT);
+
     
     // sjekker at ikke brukernavn er registrert fra før
     $sql    = "SELECT * FROM user WHERE name ='$name' OR username ='$usn'";
@@ -36,7 +38,7 @@ if (!$conn) {
         echo "Bruker med navn $name eller brukernavn $usn er allerede registrert fra før";
         goto end;
     } else {
-        $sql = "INSERT INTO user(username, name, phone, password, location) VALUES('$usn', '$name', '$phone', '$pw', '$location')";
+        $sql = "INSERT INTO user(username, name, phone, password, location) VALUES('$usn', '$name', '$phone', '$hashpw', '$location')";
         
         // om spørringen går igjennom
         if (mysqli_query($conn, $sql)) {

@@ -10,6 +10,7 @@
 	$months = array('Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Desember');
 	$headings = array('Søndag','Mandag','Tirsdag','Onsdag','Torsdag','Fredag','Lørdag');
 
+	// delete after running install.php
 	$admusername = "admin";
 	$admpassword = "225299";
 	

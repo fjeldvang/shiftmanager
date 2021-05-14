@@ -28,7 +28,7 @@ $sql       = "CREATE TABLE $tablename (
         userID INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(50) NOT NULL,
         username VARCHAR(45) NOT NULL,
-        password VARCHAR(45) NOT NULL,
+        password VARCHAR(255) NOT NULL,
         phone INT(11) UNSIGNED,
         location VARCHAR (80),
         FOREIGN KEY (location) REFERENCES location(location)
@@ -36,7 +36,8 @@ $sql       = "CREATE TABLE $tablename (
 
 if (mysqli_query($conn, $sql)) {
     echo "Table " . $tablename . " created successfully";
-    $sql = "INSERT INTO $tablename (userID, name, username, password, phone, location) VALUES(1, 'Administrator', '$admusername', '$admpassword', null, null)";
+    $hashAdmpass = password_hash($admpassword, PASSWORD_DEFAULT);
+    $sql = "INSERT INTO $tablename (userID, name, username, password, phone, location) VALUES(1, 'Administrator', '$admusername', '$hashAdmpass', null, null)";
     if (mysqli_query($conn, $sql)) {
         echo "Administrator user added to " . $tablename . " with the userID 1, username $admusername and password $admpassword";
     } else {
