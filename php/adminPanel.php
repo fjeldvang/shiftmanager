@@ -23,7 +23,7 @@ if ($_SESSION["admin"] != "true") {
         <input id="from" name="start_day" placeholder="Skift start" required="" type="text"  autocomplete="off" />
         <input id="to" name="end_day" placeholder="Skift slutt" required="" type="text"  autocomplete="off" />
         <br>
-            
+            <div class="hoursoption">
             <select name="start_hour">
             <option>00</option>
             <option>01</option>
@@ -86,6 +86,7 @@ if ($_SESSION["admin"] != "true") {
             <option>30</option>
             <option>45</option>
         </select>
+    </div>
     <br><br> </div>
     <input name="book" type="submit" value="Opprett skift" class='button' style="width:80%;"/>
 </form>
@@ -144,7 +145,7 @@ if ($_SESSION["admin"] != "true") {
 </div>
 </div>
 <form method="post" action="" enctype="multipart/form-data" id="showLocation" name="showLocation" class="showLocation" onsubmit="#">
-    <p>Filtrer etter ansatt på lokasjon</p> </br> <div class= "showSelect">
+    <p class="filtertext">Filtrer etter ansatt på lokasjon</p> </br> <div class= "showSelect">
         <div class="formlist">
      <?php
     listboxForLocation();

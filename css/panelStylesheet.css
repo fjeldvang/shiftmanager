@@ -116,6 +116,7 @@ form{
     border: none;
     outline: none;
     color: white;
+    font-variant: bold;
     font-size: 15px;
     margin: 8px;
     border-bottom: 2px solid #F4F7FD;
@@ -125,8 +126,37 @@ form{
     background: none;
     border: 2px solid #F4F7FD;
     color: white;
+    text-align: center;
     padding: 5px;
     font-size: 18px;
     cursor: pointer;
     margin: 12px 0;
+}
+.filtertext{
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.hoursoption select{
+    width: 10%;
+    padding:10px;
+    border-radius:10px;
+    text-align:center;
+    padding: 12px 20px;
+    margin: 8px 0;
+    background-color: #DCDCDC;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+:-ms-input-placeholder {
+    color:white;
+}
+::placeholder {
+  color: white;
+  opacity: 1;
+}
+::-ms-input-placeholder {
+ color: white;
 }
