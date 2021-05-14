@@ -18,8 +18,10 @@ $sql       = "CREATE TABLE $tablename (
     )";
 if (mysqli_query($conn, $sql)) {
     echo "Table " . $tablename . " created successfully";
+    print '<br>';
 } else {
     echo "Error creating table: " . mysqli_error($conn);
+    print '<br>';
 }
 
 // lager "user" tabellen
@@ -40,12 +42,15 @@ if (mysqli_query($conn, $sql)) {
     $sql = "INSERT INTO $tablename (userID, name, username, password, phone, location) VALUES(1, 'Administrator', '$admusername', '$hashAdmpass', null, null)";
     if (mysqli_query($conn, $sql)) {
         echo "Administrator user added to " . $tablename . " with the userID 1, username $admusername and password $admpassword";
+        print '<br>';
     } else {
         echo "Error: " . mysqli_error($conn);
         echo "couldn't add Administrator user to table";
+        print '<br>';
     }
 } else {
     echo "Error creating table: " . mysqli_error($conn);
+    print '<br>';
 }
 
 // lager "shifts" tabellen
@@ -63,8 +68,10 @@ $sql       = "CREATE TABLE $tablename (
 
 if (mysqli_query($conn, $sql)) {
     echo "Table " . $tablename . " created successfully";
+    print '<br>';
 } else {
     echo "Error creating table: " . mysqli_error($conn);
+    print '<br>';
 }
 
 // lager isadmin tabellen
@@ -79,13 +86,16 @@ if (mysqli_query($conn, $sql)) {
     $sql = "INSERT INTO isadmin(userID) VALUES(1)";
     if (mysqli_query($conn, $sql)) {
         echo "Admin user $admusername " . " successfully given privileges";
+        print '<br>';
     }
     
     else {
         echo "Error creating table: " . mysqli_error($conn);
+        print '<br>';
     }
 } else {
     echo "Error creating table: " . mysqli_error($conn);
+    print '<br>';
 }
 
 mysqli_close($conn);
