@@ -15,7 +15,7 @@ ini_set('display_errors', 0);
 
 <?php
 include 'config.php';
-include 'functions.php';
+include_once 'functions.php';
 // lag og sjekk tilkobling
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn) {
@@ -25,7 +25,6 @@ if (!$conn) {
     $userID   = null;
     $name     = $_POST["fname"];
     $usn      = $_POST["username"];
-    //$pw       = $_POST["password"];
     $phone    = $_POST["phone"];
     $location = $_POST["listboxLocation"];
     $hashpw   = password_hash($_POST["password"], PASSWORD_DEFAULT);
@@ -38,15 +37,21 @@ if (!$conn) {
         echo "Bruker med navn $name eller brukernavn $usn er allerede registrert fra før";
         goto end;
     } else {
-        $sql = "INSERT INTO user(username, name, phone, password, location) VALUES('$usn', '$name', '$phone', '$hashpw', '$location')";
-        
+        $sql = "INSERT INTO user(userID, username, name, phone, password, location) VALUES(DEFAULT, '$usn', '$name', '$phone', '$hashpw', '$location')";
+
         // om spørringen går igjennom
         if (mysqli_query($conn, $sql)) {
-            echo "<h3>Bruker laget</h3>";
             
+            echo "<h3>Bruker laget</h3>";
+
+            $sqlQuery = "SELECT * FROM user WHERE username LIKE '$usn'";
+            $sqlResult = mysqli_query($conn, $sqlQuery) or die("Funker ikke");
+            $row    = mysqli_fetch_array($sqlResult);
+            $userID = $row["userID"];
+
             if (isset($_POST["admin"]) && $_SESSION["userID"] == 1) {
                 // henter UID og setter som admin
-                getUserID($userID, $usn);
+                setAsAdmin($userID);
             } elseif (isset($_POST["admin"]) && $_SESSION["userID"] != 1) {
                 echo "Du må være logget inn som rotbrukeren for å kunne legge til admin brukere<br><br>";
                 echo "(for DB admin) <br> Lag administrator konto via phpmyadmin med userID 1";

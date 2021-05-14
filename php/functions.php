@@ -3,20 +3,6 @@ session_start();
 error_reporting(0);
 ini_set('display_errors', 0);
 
-function getUserID($usn)
-{
-    /* Henter userID fra database med valgt brukernavn og setter som admin */
-    include 'config.php';
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
-    
-    $sqlQuery = "SELECT * FROM user WHERE username LIKE '$usn'";
-    $sqlResult = mysqli_query($conn, $sqlQuery) or die("Funker ikke");
-    $row    = mysqli_fetch_array($sqlResult);
-    $userID = $row["userID"];
-    setAsAdmin($userID);
-    return $userID;
-}
-
 function getLocation($userID)
 {
     /* Henter lokasjon fra database med userID */
@@ -39,7 +25,7 @@ function setAsAdmin($userID)
     $sql = "INSERT INTO isadmin(userID)
             VALUES ($userID)";
     
-    if (mysqli_query($conn, $sql)) {
+    if (mysqli_query($conn, $sql) or die ("Noe gikk galt.")) {
         echo "<h3>Bruker også registrert som admin.</h3>";
     }
 }
