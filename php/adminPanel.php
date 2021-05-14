@@ -54,7 +54,7 @@ if ($_SESSION["admin"] != "true") {
             <option>15</option>
             <option>30</option>
             <option>45</option>
-        </select>		
+        </select> |
         <select name="end_hour">
             <option>00</option>
             <option>01</option>

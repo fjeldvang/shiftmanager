@@ -237,9 +237,9 @@ function draw_calendar($month, $year, $userID)
                     $calendar .= "<font color=\"grey\"><s>";
                 if ($row["canceled"] == 1)
                     $calendar .= "<font color=\"grey\"><s>";
-                $calendar .= "Lokasjon: " . $row["location"] . "<br>" . $row["name"] . "<br>" . $row["phone"] . "<br>";
-                $calendar .= "Skift starter: " . sprintf("%02d:%02d", $row["start_time"] / 60 / 60, ($row["start_time"] % (60 * 60) / 60)) . "<br>";
-                $calendar .= "Skift slutter: " . sprintf("%02d:%02d", $row["end_time"] / 60 / 60, ($row["end_time"] % (60 * 60) / 60)) . "<br><hr><br>";
+                $calendar .= $row["location"] . "<br>" . $row["name"] . "<br>" . $row["phone"] . "<br>";
+                $calendar .= sprintf("%02d:%02d", $row["start_time"] / 60 / 60, ($row["start_time"] % (60 * 60) / 60)) . " - ";
+                $calendar .= sprintf("%02d:%02d", $row["end_time"] / 60 / 60, ($row["end_time"] % (60 * 60) / 60)) . "<br><hr><br>";
                 if ($row["canceled"] == 1)
                     $calendar .= "</s></font>";
                 if ($currentDay > $row["end_day"])
