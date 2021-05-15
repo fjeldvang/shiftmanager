@@ -18,7 +18,7 @@ body {
 	border-bottom: 7px solid #F4F7FD;
 	padding: 13px 0;
 }
-.formbox{
+.formbox {
 	width: 100%;
 	overflow: hidden;
 	font-size: 20px;
@@ -26,7 +26,7 @@ body {
 	padding: 8px;
 	border-bottom: 2px solid #F4F7FD;
 }
-.formbox input{
+.formbox input {
 	background: none;
 	float: left;
 	border: none;
@@ -36,7 +36,7 @@ body {
 	width: 80%;
 	margin: 15px;
 }
-.btn{
+.btn {
 	width: 100%;
 	border: 2px solid #F4F7FD;
 	color: white;
@@ -45,9 +45,9 @@ body {
 	cursor: pointer;
 	margin: 12px;
 }
-img{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 385px;
+img {
+  	display: block;
+  	margin-left: auto;
+ 	margin-right: auto;
+  	margin-top: 385px;
 }
