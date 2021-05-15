@@ -30,6 +30,7 @@ ini_set('display_errors', 0);
     <img src="picture/MMarcussen.jpg" class="marcimg" width="450" height="450">
 </div>
 <?php
+// login.php
 if (isset($_POST["loginButton"]))
 {
 
