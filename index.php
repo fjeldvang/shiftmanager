@@ -15,6 +15,7 @@ if (!$loginUser) {
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
         <title>Marcussen Eftf kalender</title>
         <link href="css/stylesheet.css?<?= filemtime("css/stylesheet.css") ?>" rel="stylesheet" type="text/css"/>
         <link href="css/jquery-ui.css" rel="stylesheet" type="text/css"/>
@@ -26,7 +27,7 @@ if (!$loginUser) {
     
 <body>
     <div class="section_shadowPage">
-        <div class="container_shadowPage w-container">
+        <div class="container_shadowPage">
             <div class = "overskrift" style="margin:auto;">
                 <img src="picture/logo-big.png" style="max-width:50%;margin-left:25%;">
             </div>

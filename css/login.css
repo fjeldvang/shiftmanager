@@ -1,16 +1,24 @@
 body {
-	background-color: #262425; 
+	background-color: #262425;
+	margin: auto;
+	width: 50%;
+  	padding: 10px;
+}
+.login-section {
+	padding-right: 0px;
 }
 .login-container {
-	width: 280px;
-	position: fixed;
-	top: 20%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	width: 100%;
+   	max-width: 300px;
+	margin-top: 0px;
+	margin-right: auto;
+   	margin-left: auto;
+	padding-right: 0px;
+   	padding-left: 0px;
 	color: white;
 }
 .login-container h3 {
-	float: center;
+	text-align: center;
 	font-size: 52px;
 	font-family: sans-serif;
 	border-bottom: 7px solid #F4F7FD;
@@ -46,14 +54,12 @@ body {
 }
 img {
   	display: block;
-  	margin: 60% auto 0 auto;
-	max-width: 30%;
+  	margin-right: auto;
+   	margin-left: auto;
 	height: auto;
-	bottom: 10%;
 }
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 900px) {
     body {
-        width:95%;
-        min-width:460px;
+        width: 100%;
     }
 }
