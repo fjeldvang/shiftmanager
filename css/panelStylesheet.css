@@ -151,12 +151,12 @@ form{
     box-sizing: border-box;
 }
 :-ms-input-placeholder {
-    color:white;
+    color:rgb(185, 185, 185);
 }
 ::placeholder {
-  color: white;
+  color: rgb(185, 185, 185);
   opacity: 1;
 }
 ::-ms-input-placeholder {
- color: white;
+ color: rgb(185, 185, 185);
 }
