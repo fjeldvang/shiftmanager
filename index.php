@@ -44,15 +44,16 @@ if (!$loginUser) {
     /* config inneholder $months, et array av alle månedene. trengs når man bruker draw_calendar() */
     include 'php/config.php';
     
-    /* sjekker om innlogget bruker er admin, henter deretter bruker fra listeboks for å velge view 
-     * dette er en rar måte å gjøre det på egentlig, men $_SESSION er ikke veldig glad i ordentlig bool
-     * keep it simple, stupid! 
-     */
+    /* sjekker om innlogget bruker er admin, henter deretter bruker fra listeboks for å velge view */
     if ($_SESSION["admin"] == "true") {
         if (isset($_POST["listboxLocation"])) {
+        	print("<br><br>");
             print("<form method='post' action='' enctype='multipart/form-data' id='listboxForUserIDByLocation' name='listboxForUserIDByLocation' class ='listboxForUserIDByLocation' onsubmit=''>");
+            print("<div class='formlist'>");
             listboxForUserIDByLocation();
-            print("<p><input class='button' name='listboxForUserIDByLocation' type='submit' value='Filtrer etter ansatt' /></p>");
+            print("</div>");
+            print("<br><br>");
+            print("<input class='button' name='listboxForUserIDByLocation' type='submit' value='Filtrer etter ansatt' />");
             print("</form>");
         }
         
