@@ -3,7 +3,7 @@ $(function() {
     $( "#from" ).datepicker({
       defaultDate: "+0w",
       changeMonth: true,
-      numberOfMonths: 3,
+      numberOfMonths: 2,
       onClose: function( selectedDate ) {
         $( "#to" ).datepicker( "option", "minDate", selectedDate );
       }
@@ -12,7 +12,7 @@ $(function() {
       defaultDate: "+0w",
 	  regional: "no",
       changeMonth: true,
-      numberOfMonths: 3,
+      numberOfMonths: 2,
       onClose: function( selectedDate ) {
         $( "#from" ).datepicker( "option", "maxDate", selectedDate );
       }
